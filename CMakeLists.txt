@@ -1,0 +1,5 @@
+cmake_minimum_required(VERSION 3.4.1)
+include_directories(stack)
+add_subdirectory(stack)
+include_directories(thread)
+add_subdirectory(thread)

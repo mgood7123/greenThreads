@@ -1,0 +1,30 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/brothercomplex/git/greenThreads/stack/direction.cpp
+direction.h
+/home/brothercomplex/git/greenThreads/stack/direction.h
+stack.h
+/home/brothercomplex/git/greenThreads/stack/stack.h
+
+/home/brothercomplex/git/greenThreads/stack/direction.h
+stdio.h
+-
+
+/home/brothercomplex/git/greenThreads/stack/new.cpp
+direction.h
+/home/brothercomplex/git/greenThreads/stack/direction.h
+stack.h
+/home/brothercomplex/git/greenThreads/stack/stack.h
+
+/home/brothercomplex/git/greenThreads/stack/stack.h
+direction.h
+/home/brothercomplex/git/greenThreads/stack/direction.h
+stdlib.h
+-
+

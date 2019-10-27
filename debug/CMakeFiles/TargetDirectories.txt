@@ -1,0 +1,14 @@
+/home/brothercomplex/git/greenThreads/debug/CMakeFiles/rebuild_cache.dir
+/home/brothercomplex/git/greenThreads/debug/CMakeFiles/edit_cache.dir
+/home/brothercomplex/git/greenThreads/debug/stack/CMakeFiles/rebuild_cache.dir
+/home/brothercomplex/git/greenThreads/debug/stack/CMakeFiles/stack.dir
+/home/brothercomplex/git/greenThreads/debug/stack/CMakeFiles/edit_cache.dir
+/home/brothercomplex/git/greenThreads/debug/stack/tests/CMakeFiles/rebuild_cache.dir
+/home/brothercomplex/git/greenThreads/debug/stack/tests/CMakeFiles/test_stack.dir
+/home/brothercomplex/git/greenThreads/debug/stack/tests/CMakeFiles/edit_cache.dir
+/home/brothercomplex/git/greenThreads/debug/thread/CMakeFiles/rebuild_cache.dir
+/home/brothercomplex/git/greenThreads/debug/thread/CMakeFiles/thread.dir
+/home/brothercomplex/git/greenThreads/debug/thread/CMakeFiles/edit_cache.dir
+/home/brothercomplex/git/greenThreads/debug/thread/tests/CMakeFiles/rebuild_cache.dir
+/home/brothercomplex/git/greenThreads/debug/thread/tests/CMakeFiles/test_thread.dir
+/home/brothercomplex/git/greenThreads/debug/thread/tests/CMakeFiles/edit_cache.dir
