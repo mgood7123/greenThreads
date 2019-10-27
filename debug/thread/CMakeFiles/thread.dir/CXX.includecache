@@ -16,10 +16,20 @@ direction.h
 stdlib.h
 -
 
+/home/brothercomplex/git/greenThreads/thread/functionPointer.h
+
 /home/brothercomplex/git/greenThreads/thread/new.cpp
 new.h
 /home/brothercomplex/git/greenThreads/thread/new.h
+functionPointer.h
+/home/brothercomplex/git/greenThreads/thread/functionPointer.h
 sched.h
+-
+sys/types.h
+-
+signal.h
+-
+sys/wait.h
 -
 
 /home/brothercomplex/git/greenThreads/thread/new.h
