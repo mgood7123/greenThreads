@@ -1,6 +1,8 @@
 #include <thread.h>
 #include <string.h>
 
+int gli = 0;
+
 int tf(void * a) {
     int saved;
     memcpy(&saved, a, sizeof(int));
@@ -21,7 +23,7 @@ void threadMonitor() {
 }
 
 int main(void) {
-    stack s = stack();
+    Stack s = Stack();
     int a = 5;
     puts("executing thread");
     threadNew(s, tf, &a);
@@ -30,7 +32,7 @@ int main(void) {
 //     newThread(s, threadMonitor);
     puts("executing 10 threads");
     for (int i = 1; i < 11; i++) {
-        auto v = stack();
+        auto v = Stack();
         threadNew(v, tf, &i);
     }
     puts("executed 10 threads");

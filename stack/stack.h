@@ -1,7 +1,10 @@
+#ifndef STACK_STACK
+#define STACK_STACK
+
 #include "direction.h"
 #include <stdlib.h>
 
-class stack {
+class Stack {
     public:
         char * stack = nullptr;
         char * top = nullptr; // points to top of stack
@@ -15,3 +18,5 @@ class stack {
         };
         int getStackDirection();
 };
+
+#endif

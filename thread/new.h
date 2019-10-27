@@ -1,14 +1,27 @@
+#ifndef THREAD_NEW
+#define THREAD_NEW
+
 #include <unistd.h>
 #include "../stack/stack.h"
-class thread {
+class Thread {
     public:
-        pid_t pid = -1; // process itself may be 0, init
+        long int pid = -1; // process itself may be 0, init
 };
 
-int gli = 0;
+Thread threadNew(Stack & s, size_t stack_size, int (*f)(void*), void * arg);
+Thread threadNew(Stack & s, int (*f)(void*), void * arg);
+Thread threadNew(Stack & s, size_t stack_size, void (*f)());
+Thread threadNew(Stack & s, void (*f)());
+Thread threadNew(bool createSuspended, Stack & s, size_t stack_size, int (*f)(void*), void * arg);
+Thread threadNewSuspended(Stack & s, size_t stack_size, int (*f)(void*), void * arg);
+Thread threadNewSuspended(Stack & s, int (*f)(void*), void * arg);
+Thread threadNewSuspended(Stack & s, size_t stack_size, void (*f)());
+Thread threadNewSuspended(Stack & s, void (*f)());
+void threadJoin(long int pid);
+void threadJoin(long int pid, int & ret);
+void threadJoinUntilStopped(long int pid);
+void threadJoinUntilStopped(long int pid, int & ret);
+void threadPause(long int pid);
+void threadResume(long int pid);
 
-thread threadNew(stack & s, int (*f)(void*), void * arg);
-thread threadNew(stack & s, void (*f)());
-void threadJoin(thread & t);
-void threadPause(thread & t);
-void threadResume(thread & t);
+#endif

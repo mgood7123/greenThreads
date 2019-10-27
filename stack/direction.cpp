@@ -1,6 +1,6 @@
 #include "direction.h"
 #include "stack.h"
-int stack::internal::getStackDirection(int *addr) {
+int Stack::internal::getStackDirection(int *addr) {
     int fun_local;
     if (addr < &fun_local) {
         printf("Stack grows upward\n");
@@ -10,7 +10,7 @@ int stack::internal::getStackDirection(int *addr) {
     return SDD;
 }
 
-int stack::getStackDirection() {
+int Stack::getStackDirection() {
     int main_local;
     return internal().getStackDirection(&main_local);
 }

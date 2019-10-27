@@ -1,6 +1,6 @@
 #include "direction.h"
 #include "stack.h"
-void stack::alloc(size_t size) {
+void Stack::alloc(size_t size) {
     stack = new char[size];
     size = size;
     direction = getStackDirection();
@@ -8,7 +8,7 @@ void stack::alloc(size_t size) {
     else top = stack + (size*sizeof(char));;
 }
 
-void stack::free() {
+void Stack::free() {
     if (stack == nullptr) return;
     delete[] stack;
     stack = nullptr;
