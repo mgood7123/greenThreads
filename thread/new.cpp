@@ -52,6 +52,8 @@ thread threadNew(stack & s, void (*f)()) {
     s = stack();
     s.alloc(4096);
     t.pid = clone(helperVoid, s.top, 0, reinterpret_cast<void*>(f));
+    // pause the thread as soon as possible
+    threadPause(t);
     if (t.pid == -1) {
         perror("clone");
         s.free();
