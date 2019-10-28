@@ -9,14 +9,14 @@
 #include <sys/wait.h>
 
 void threadJoin(long int pid) {
-    if (pid != -1) if (waitid(P_PID, pid, NULL, __WCLONE) == -1) perror("waitpid");
+    if (pid != -1) if (waitid(P_PID, pid, NULL, __WCLONE) == -1) perror("waitid");
 }
 
 void threadJoin(long int pid, int & ret) {
     if (pid != -1) {
         siginfo_t info;
         if (waitid(P_PID, pid, &info, __WCLONE|WEXITED) == -1) {
-            perror("waitpid");
+            perror("waitid");
             ret = -1;
         } else {
             ret = info.si_status;
@@ -25,14 +25,30 @@ void threadJoin(long int pid, int & ret) {
 }
 
 void threadJoinUntilStopped(long int pid) {
-    if (pid != -1) if (waitid(P_PID, pid, NULL, __WCLONE|WEXITED|WSTOPPED) == -1) perror("waitpid");
+    if (pid != -1) if (waitid(P_PID, pid, NULL, __WCLONE|WEXITED|WSTOPPED) == -1) perror("waitid");
 };
 
 void threadJoinUntilStopped(long int pid, int & ret) {
     if (pid != -1) {
         siginfo_t info;
         if (waitid(P_PID, pid, &info, __WCLONE|WEXITED|WSTOPPED) == -1) {
-            perror("waitpid");
+            perror("waitid");
+            ret = -1;
+        } else {
+            ret = info.si_status;
+        }
+    }
+};
+
+void threadWaitUntilStopped(long int pid) {
+    if (waitid(P_PID, pid, NULL, __WCLONE|WSTOPPED) == -1) perror("waitid");
+}
+
+void threadWaitUntilStopped(long int pid, int & ret) {
+    if (pid != -1) {
+        siginfo_t info;
+        if (waitid(P_PID, pid, &info, __WCLONE|WSTOPPED) == -1) {
+            perror("waitid");
             ret = -1;
         } else {
             ret = info.si_status;
@@ -56,6 +72,7 @@ int helperVoid(void * v) {
 
 int suspended(void * arg) {
     kill(getpid(), SIGSTOP);
+    puts("resume thread");
     struct AB {
         int (*f)(void*);
         void * arg;
@@ -84,9 +101,8 @@ Thread threadNew(bool createSuspended, Stack & s, size_t stack_size, int (*f)(vo
         perror("clone");
         s.free();
     } else {
-        if (waitid(P_PID, t.pid, NULL, __WCLONE|WSTOPPED) == -1) perror("waitpid");
-        if (!x->suspended) if (kill(t.pid, SIGCONT) == -1) perror("kill");
-        printf("pid: %d\n", t.pid);
+        threadWaitUntilStopped(t.pid);
+        if (!createSuspended) threadResume(t.pid);
     }
     return t;
 }

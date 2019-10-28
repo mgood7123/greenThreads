@@ -21,6 +21,8 @@ void threadJoin(long int pid);
 void threadJoin(long int pid, int & ret);
 void threadJoinUntilStopped(long int pid);
 void threadJoinUntilStopped(long int pid, int & ret);
+void threadWaitUntilStopped(long int pid);
+void threadWaitUntilStopped(long int pid, int & ret);
 void threadPause(long int pid);
 void threadResume(long int pid);
 
