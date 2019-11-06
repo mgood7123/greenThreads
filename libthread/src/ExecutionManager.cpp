@@ -169,7 +169,13 @@ int staticHandleRequest(atom<class ExecutionManager *> arg) {
             case ExecutionManager::REQUEST_ID.threadCreate:
                 if (executionManager_Current.load()->debug.load()) println("request: threadCreate");
                 if (executionManager_Current.load()->debug.load()) println("adding new thread");
-                R.load()->REQUEST.load().reply.store(threadNew_(static_cast<atom<struct QTS *>>(R.load()->REQUEST.load().package)).load());
+                R.load()->REQUEST.load().reply.store(threadNew_(
+                    // cannot cast, must initialize
+                    // variable name is ommited when initializing as a parameter
+                    atom<struct QTS *> (
+                        static_cast<struct QTS *>(R.load()->REQUEST.load().package.load())
+                    )
+                ).load());
                 assert(R.load()->REQUEST.load().reply.load() != nullptr);
                 R.load()->REQUEST.load().package.store(nullptr);
                 if (executionManager_Current.load()->debug.load()) println("R.load()->REQUEST.reply = %p", R.load()->REQUEST.load().reply.load());
