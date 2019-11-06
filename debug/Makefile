@@ -48,10 +48,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/brothercomplex/git/greenThreads
+CMAKE_SOURCE_DIR = /home/brothercomplex/AndroidStudioProjects/ForegroundService/app/WinAPI/Windows/threads
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/brothercomplex/git/greenThreads/debug
+CMAKE_BINARY_DIR = /home/brothercomplex/AndroidStudioProjects/ForegroundService/app/WinAPI/Windows/threads/debug
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -80,9 +80,9 @@ edit_cache/fast: edit_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/brothercomplex/git/greenThreads/debug/CMakeFiles /home/brothercomplex/git/greenThreads/debug/CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/brothercomplex/AndroidStudioProjects/ForegroundService/app/WinAPI/Windows/threads/debug/CMakeFiles /home/brothercomplex/AndroidStudioProjects/ForegroundService/app/WinAPI/Windows/threads/debug/CMakeFiles/progress.marks
 	$(MAKE) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/brothercomplex/git/greenThreads/debug/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/brothercomplex/AndroidStudioProjects/ForegroundService/app/WinAPI/Windows/threads/debug/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -150,17 +150,30 @@ thread/fast:
 .PHONY : thread/fast
 
 #=============================================================================
-# Target rules for targets named test_thread
+# Target rules for targets named test_single_thread
 
 # Build rule for target.
-test_thread: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 test_thread
-.PHONY : test_thread
+test_single_thread: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 test_single_thread
+.PHONY : test_single_thread
 
 # fast build rule for target.
-test_thread/fast:
-	$(MAKE) -f thread/tests/CMakeFiles/test_thread.dir/build.make thread/tests/CMakeFiles/test_thread.dir/build
-.PHONY : test_thread/fast
+test_single_thread/fast:
+	$(MAKE) -f thread/tests/CMakeFiles/test_single_thread.dir/build.make thread/tests/CMakeFiles/test_single_thread.dir/build
+.PHONY : test_single_thread/fast
+
+#=============================================================================
+# Target rules for targets named test_multi_thread
+
+# Build rule for target.
+test_multi_thread: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 test_multi_thread
+.PHONY : test_multi_thread
+
+# fast build rule for target.
+test_multi_thread/fast:
+	$(MAKE) -f thread/tests/CMakeFiles/test_multi_thread.dir/build.make thread/tests/CMakeFiles/test_multi_thread.dir/build
+.PHONY : test_multi_thread/fast
 
 # Help Target
 help:
@@ -173,7 +186,8 @@ help:
 	@echo "... stack"
 	@echo "... test_stack"
 	@echo "... thread"
-	@echo "... test_thread"
+	@echo "... test_single_thread"
+	@echo "... test_multi_thread"
 .PHONY : help
 
 

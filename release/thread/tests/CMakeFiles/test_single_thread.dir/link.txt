@@ -1,0 +1,1 @@
+/usr/bin/c++  -O3 -DNDEBUG   CMakeFiles/test_single_thread.dir/single_thread.cpp.o  -o test_single_thread -Wl,-rpath,/home/brothercomplex/AndroidStudioProjects/ForegroundService/app/WinAPI/Windows/threads/release/thread:/home/brothercomplex/AndroidStudioProjects/ForegroundService/app/WinAPI/Windows/threads/release/stack ../libthread.so ../../stack/libstack.so 

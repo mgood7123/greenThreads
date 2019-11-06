@@ -1,0 +1,1 @@
+/usr/bin/c++ -fPIC -O3 -DNDEBUG  -shared -Wl,-soname,libstack.so -o libstack.so CMakeFiles/stack.dir/direction.cpp.o CMakeFiles/stack.dir/new.cpp.o 

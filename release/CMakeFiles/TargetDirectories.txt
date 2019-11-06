@@ -1,0 +1,15 @@
+/home/brothercomplex/AndroidStudioProjects/ForegroundService/app/WinAPI/Windows/threads/release/CMakeFiles/rebuild_cache.dir
+/home/brothercomplex/AndroidStudioProjects/ForegroundService/app/WinAPI/Windows/threads/release/CMakeFiles/edit_cache.dir
+/home/brothercomplex/AndroidStudioProjects/ForegroundService/app/WinAPI/Windows/threads/release/stack/CMakeFiles/rebuild_cache.dir
+/home/brothercomplex/AndroidStudioProjects/ForegroundService/app/WinAPI/Windows/threads/release/stack/CMakeFiles/stack.dir
+/home/brothercomplex/AndroidStudioProjects/ForegroundService/app/WinAPI/Windows/threads/release/stack/CMakeFiles/edit_cache.dir
+/home/brothercomplex/AndroidStudioProjects/ForegroundService/app/WinAPI/Windows/threads/release/stack/tests/CMakeFiles/rebuild_cache.dir
+/home/brothercomplex/AndroidStudioProjects/ForegroundService/app/WinAPI/Windows/threads/release/stack/tests/CMakeFiles/test_stack.dir
+/home/brothercomplex/AndroidStudioProjects/ForegroundService/app/WinAPI/Windows/threads/release/stack/tests/CMakeFiles/edit_cache.dir
+/home/brothercomplex/AndroidStudioProjects/ForegroundService/app/WinAPI/Windows/threads/release/thread/CMakeFiles/rebuild_cache.dir
+/home/brothercomplex/AndroidStudioProjects/ForegroundService/app/WinAPI/Windows/threads/release/thread/CMakeFiles/thread.dir
+/home/brothercomplex/AndroidStudioProjects/ForegroundService/app/WinAPI/Windows/threads/release/thread/CMakeFiles/edit_cache.dir
+/home/brothercomplex/AndroidStudioProjects/ForegroundService/app/WinAPI/Windows/threads/release/thread/tests/CMakeFiles/edit_cache.dir
+/home/brothercomplex/AndroidStudioProjects/ForegroundService/app/WinAPI/Windows/threads/release/thread/tests/CMakeFiles/rebuild_cache.dir
+/home/brothercomplex/AndroidStudioProjects/ForegroundService/app/WinAPI/Windows/threads/release/thread/tests/CMakeFiles/test_single_thread.dir
+/home/brothercomplex/AndroidStudioProjects/ForegroundService/app/WinAPI/Windows/threads/release/thread/tests/CMakeFiles/test_multi_thread.dir

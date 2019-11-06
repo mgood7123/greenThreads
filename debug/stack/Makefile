@@ -48,10 +48,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/brothercomplex/git/greenThreads
+CMAKE_SOURCE_DIR = /home/brothercomplex/AndroidStudioProjects/ForegroundService/app/WinAPI/Windows/threads
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/brothercomplex/git/greenThreads/debug
+CMAKE_BINARY_DIR = /home/brothercomplex/AndroidStudioProjects/ForegroundService/app/WinAPI/Windows/threads/debug
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -80,14 +80,14 @@ edit_cache/fast: edit_cache
 
 # The main all target
 all: cmake_check_build_system
-	cd /home/brothercomplex/git/greenThreads/debug && $(CMAKE_COMMAND) -E cmake_progress_start /home/brothercomplex/git/greenThreads/debug/CMakeFiles /home/brothercomplex/git/greenThreads/debug/stack/CMakeFiles/progress.marks
-	cd /home/brothercomplex/git/greenThreads/debug && $(MAKE) -f CMakeFiles/Makefile2 stack/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/brothercomplex/git/greenThreads/debug/CMakeFiles 0
+	cd /home/brothercomplex/AndroidStudioProjects/ForegroundService/app/WinAPI/Windows/threads/debug && $(CMAKE_COMMAND) -E cmake_progress_start /home/brothercomplex/AndroidStudioProjects/ForegroundService/app/WinAPI/Windows/threads/debug/CMakeFiles /home/brothercomplex/AndroidStudioProjects/ForegroundService/app/WinAPI/Windows/threads/debug/stack/CMakeFiles/progress.marks
+	cd /home/brothercomplex/AndroidStudioProjects/ForegroundService/app/WinAPI/Windows/threads/debug && $(MAKE) -f CMakeFiles/Makefile2 stack/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/brothercomplex/AndroidStudioProjects/ForegroundService/app/WinAPI/Windows/threads/debug/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
 clean:
-	cd /home/brothercomplex/git/greenThreads/debug && $(MAKE) -f CMakeFiles/Makefile2 stack/clean
+	cd /home/brothercomplex/AndroidStudioProjects/ForegroundService/app/WinAPI/Windows/threads/debug && $(MAKE) -f CMakeFiles/Makefile2 stack/clean
 .PHONY : clean
 
 # The main clean target
@@ -97,22 +97,22 @@ clean/fast: clean
 
 # Prepare targets for installation.
 preinstall: all
-	cd /home/brothercomplex/git/greenThreads/debug && $(MAKE) -f CMakeFiles/Makefile2 stack/preinstall
+	cd /home/brothercomplex/AndroidStudioProjects/ForegroundService/app/WinAPI/Windows/threads/debug && $(MAKE) -f CMakeFiles/Makefile2 stack/preinstall
 .PHONY : preinstall
 
 # Prepare targets for installation.
 preinstall/fast:
-	cd /home/brothercomplex/git/greenThreads/debug && $(MAKE) -f CMakeFiles/Makefile2 stack/preinstall
+	cd /home/brothercomplex/AndroidStudioProjects/ForegroundService/app/WinAPI/Windows/threads/debug && $(MAKE) -f CMakeFiles/Makefile2 stack/preinstall
 .PHONY : preinstall/fast
 
 # clear depends
 depend:
-	cd /home/brothercomplex/git/greenThreads/debug && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
+	cd /home/brothercomplex/AndroidStudioProjects/ForegroundService/app/WinAPI/Windows/threads/debug && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
 
 # Convenience name for target.
 stack/CMakeFiles/stack.dir/rule:
-	cd /home/brothercomplex/git/greenThreads/debug && $(MAKE) -f CMakeFiles/Makefile2 stack/CMakeFiles/stack.dir/rule
+	cd /home/brothercomplex/AndroidStudioProjects/ForegroundService/app/WinAPI/Windows/threads/debug && $(MAKE) -f CMakeFiles/Makefile2 stack/CMakeFiles/stack.dir/rule
 .PHONY : stack/CMakeFiles/stack.dir/rule
 
 # Convenience name for target.
@@ -122,7 +122,7 @@ stack: stack/CMakeFiles/stack.dir/rule
 
 # fast build rule for target.
 stack/fast:
-	cd /home/brothercomplex/git/greenThreads/debug && $(MAKE) -f stack/CMakeFiles/stack.dir/build.make stack/CMakeFiles/stack.dir/build
+	cd /home/brothercomplex/AndroidStudioProjects/ForegroundService/app/WinAPI/Windows/threads/debug && $(MAKE) -f stack/CMakeFiles/stack.dir/build.make stack/CMakeFiles/stack.dir/build
 .PHONY : stack/fast
 
 direction.o: direction.cpp.o
@@ -131,7 +131,7 @@ direction.o: direction.cpp.o
 
 # target to build an object file
 direction.cpp.o:
-	cd /home/brothercomplex/git/greenThreads/debug && $(MAKE) -f stack/CMakeFiles/stack.dir/build.make stack/CMakeFiles/stack.dir/direction.cpp.o
+	cd /home/brothercomplex/AndroidStudioProjects/ForegroundService/app/WinAPI/Windows/threads/debug && $(MAKE) -f stack/CMakeFiles/stack.dir/build.make stack/CMakeFiles/stack.dir/direction.cpp.o
 .PHONY : direction.cpp.o
 
 direction.i: direction.cpp.i
@@ -140,7 +140,7 @@ direction.i: direction.cpp.i
 
 # target to preprocess a source file
 direction.cpp.i:
-	cd /home/brothercomplex/git/greenThreads/debug && $(MAKE) -f stack/CMakeFiles/stack.dir/build.make stack/CMakeFiles/stack.dir/direction.cpp.i
+	cd /home/brothercomplex/AndroidStudioProjects/ForegroundService/app/WinAPI/Windows/threads/debug && $(MAKE) -f stack/CMakeFiles/stack.dir/build.make stack/CMakeFiles/stack.dir/direction.cpp.i
 .PHONY : direction.cpp.i
 
 direction.s: direction.cpp.s
@@ -149,7 +149,7 @@ direction.s: direction.cpp.s
 
 # target to generate assembly for a file
 direction.cpp.s:
-	cd /home/brothercomplex/git/greenThreads/debug && $(MAKE) -f stack/CMakeFiles/stack.dir/build.make stack/CMakeFiles/stack.dir/direction.cpp.s
+	cd /home/brothercomplex/AndroidStudioProjects/ForegroundService/app/WinAPI/Windows/threads/debug && $(MAKE) -f stack/CMakeFiles/stack.dir/build.make stack/CMakeFiles/stack.dir/direction.cpp.s
 .PHONY : direction.cpp.s
 
 new.o: new.cpp.o
@@ -158,7 +158,7 @@ new.o: new.cpp.o
 
 # target to build an object file
 new.cpp.o:
-	cd /home/brothercomplex/git/greenThreads/debug && $(MAKE) -f stack/CMakeFiles/stack.dir/build.make stack/CMakeFiles/stack.dir/new.cpp.o
+	cd /home/brothercomplex/AndroidStudioProjects/ForegroundService/app/WinAPI/Windows/threads/debug && $(MAKE) -f stack/CMakeFiles/stack.dir/build.make stack/CMakeFiles/stack.dir/new.cpp.o
 .PHONY : new.cpp.o
 
 new.i: new.cpp.i
@@ -167,7 +167,7 @@ new.i: new.cpp.i
 
 # target to preprocess a source file
 new.cpp.i:
-	cd /home/brothercomplex/git/greenThreads/debug && $(MAKE) -f stack/CMakeFiles/stack.dir/build.make stack/CMakeFiles/stack.dir/new.cpp.i
+	cd /home/brothercomplex/AndroidStudioProjects/ForegroundService/app/WinAPI/Windows/threads/debug && $(MAKE) -f stack/CMakeFiles/stack.dir/build.make stack/CMakeFiles/stack.dir/new.cpp.i
 .PHONY : new.cpp.i
 
 new.s: new.cpp.s
@@ -176,7 +176,7 @@ new.s: new.cpp.s
 
 # target to generate assembly for a file
 new.cpp.s:
-	cd /home/brothercomplex/git/greenThreads/debug && $(MAKE) -f stack/CMakeFiles/stack.dir/build.make stack/CMakeFiles/stack.dir/new.cpp.s
+	cd /home/brothercomplex/AndroidStudioProjects/ForegroundService/app/WinAPI/Windows/threads/debug && $(MAKE) -f stack/CMakeFiles/stack.dir/build.make stack/CMakeFiles/stack.dir/new.cpp.s
 .PHONY : new.cpp.s
 
 # Help Target
@@ -205,6 +205,6 @@ help:
 # No rule that depends on this can have commands that come from listfiles
 # because they might be regenerated.
 cmake_check_build_system:
-	cd /home/brothercomplex/git/greenThreads/debug && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
+	cd /home/brothercomplex/AndroidStudioProjects/ForegroundService/app/WinAPI/Windows/threads/debug && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
 .PHONY : cmake_check_build_system
 

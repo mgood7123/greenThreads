@@ -1,0 +1,44 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+../include/println.h
+stdio.h
+-
+stdarg.h
+-
+
+../stack/direction.h
+stdio.h
+-
+
+../stack/stack.h
+direction.h
+../stack/direction.h
+stdlib.h
+-
+
+../thread/ExecutionManager.h
+unistd.h
+-
+../stack/stack.h
+../stack/stack.h
+vector
+-
+cassert
+-
+
+../thread/thread.h
+ExecutionManager.h
+../thread/ExecutionManager.h
+
+/home/brothercomplex/AndroidStudioProjects/ForegroundService/app/WinAPI/Windows/threads/thread/tests/single_thread.cpp
+thread.h
+-
+println.h
+-
+

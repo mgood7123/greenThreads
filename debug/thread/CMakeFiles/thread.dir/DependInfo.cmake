@@ -4,19 +4,20 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/home/brothercomplex/git/greenThreads/thread/new.cpp" "/home/brothercomplex/git/greenThreads/debug/thread/CMakeFiles/thread.dir/new.cpp.o"
+  "/home/brothercomplex/AndroidStudioProjects/ForegroundService/app/WinAPI/Windows/threads/thread/ExecutionManager.cpp" "/home/brothercomplex/AndroidStudioProjects/ForegroundService/app/WinAPI/Windows/threads/debug/thread/CMakeFiles/thread.dir/ExecutionManager.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 
 # The include file search paths:
 set(CMAKE_CXX_TARGET_INCLUDE_PATH
+  "../include"
   "../stack"
   "../thread"
   )
 
 # Targets to which this target links.
 set(CMAKE_TARGET_LINKED_INFO_FILES
-  "/home/brothercomplex/git/greenThreads/debug/stack/CMakeFiles/stack.dir/DependInfo.cmake"
+  "/home/brothercomplex/AndroidStudioProjects/ForegroundService/app/WinAPI/Windows/threads/debug/stack/CMakeFiles/stack.dir/DependInfo.cmake"
   )
 
 # Fortran module output directory.

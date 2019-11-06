@@ -1,4 +1,4 @@
-# Install script for directory: /home/brothercomplex/git/greenThreads/thread
+# Install script for directory: /home/brothercomplex/AndroidStudioProjects/ForegroundService/app/WinAPI/Windows/threads/thread
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -39,7 +39,7 @@ endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
-  include("/home/brothercomplex/git/greenThreads/debug/thread/tests/cmake_install.cmake")
+  include("/home/brothercomplex/AndroidStudioProjects/ForegroundService/app/WinAPI/Windows/threads/debug/thread/tests/cmake_install.cmake")
 
 endif()
 

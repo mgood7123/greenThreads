@@ -1,0 +1,1 @@
+/usr/bin/c++   -std=c++17 -fexceptions   CMakeFiles/atom_tests.dir/home/brothercomplex/AndroidStudioProjects/ForegroundService/app/WinAPI/Windows/threads/libatom/src/atomExceptions.cpp.o CMakeFiles/atom_tests.dir/atom_general.cpp.o CMakeFiles/atom_tests.dir/atom_thread.cpp.o  -o atom_tests -lpthread lib/libgtest_maind.a lib/libgtestd.a -lpthread 

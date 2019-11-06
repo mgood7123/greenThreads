@@ -6,5 +6,5 @@ CXX_FLAGS = -g -fPIC
 
 CXX_DEFINES = -Dthread_EXPORTS
 
-CXX_INCLUDES = -I/home/brothercomplex/git/greenThreads/stack -I/home/brothercomplex/git/greenThreads/thread 
+CXX_INCLUDES = -I/home/brothercomplex/AndroidStudioProjects/ForegroundService/app/WinAPI/Windows/threads/include -I/home/brothercomplex/AndroidStudioProjects/ForegroundService/app/WinAPI/Windows/threads/stack -I/home/brothercomplex/AndroidStudioProjects/ForegroundService/app/WinAPI/Windows/threads/thread 
 

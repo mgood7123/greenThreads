@@ -1,0 +1,1 @@
+/usr/bin/c++ -fPIC -O3 -DNDEBUG  -shared -Wl,-soname,libthread.so -o libthread.so CMakeFiles/thread.dir/ExecutionManager.cpp.o -Wl,-rpath,/home/brothercomplex/AndroidStudioProjects/ForegroundService/app/WinAPI/Windows/threads/release/stack ../stack/libstack.so 

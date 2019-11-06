@@ -1,4 +1,4 @@
-# Install script for directory: /home/brothercomplex/git/greenThreads/thread/tests
+# Install script for directory: /home/brothercomplex/AndroidStudioProjects/ForegroundService/app/WinAPI/Windows/threads/thread/tests
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)

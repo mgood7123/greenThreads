@@ -1,1 +1,1 @@
-/usr/bin/c++  -g   CMakeFiles/test_stack.dir/stack.cpp.o  -o test_stack -Wl,-rpath,/home/brothercomplex/git/greenThreads/debug/stack ../libstack.so 
+/usr/bin/c++  -g   CMakeFiles/test_stack.dir/stack.cpp.o  -o test_stack -Wl,-rpath,/home/brothercomplex/AndroidStudioProjects/ForegroundService/app/WinAPI/Windows/threads/debug/stack ../libstack.so 

@@ -4,13 +4,14 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/home/brothercomplex/git/greenThreads/stack/direction.cpp" "/home/brothercomplex/git/greenThreads/debug/stack/CMakeFiles/stack.dir/direction.cpp.o"
-  "/home/brothercomplex/git/greenThreads/stack/new.cpp" "/home/brothercomplex/git/greenThreads/debug/stack/CMakeFiles/stack.dir/new.cpp.o"
+  "/home/brothercomplex/AndroidStudioProjects/ForegroundService/app/WinAPI/Windows/threads/stack/direction.cpp" "/home/brothercomplex/AndroidStudioProjects/ForegroundService/app/WinAPI/Windows/threads/debug/stack/CMakeFiles/stack.dir/direction.cpp.o"
+  "/home/brothercomplex/AndroidStudioProjects/ForegroundService/app/WinAPI/Windows/threads/stack/new.cpp" "/home/brothercomplex/AndroidStudioProjects/ForegroundService/app/WinAPI/Windows/threads/debug/stack/CMakeFiles/stack.dir/new.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 
 # The include file search paths:
 set(CMAKE_CXX_TARGET_INCLUDE_PATH
+  "../include"
   "../stack"
   )
 
