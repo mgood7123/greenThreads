@@ -56,7 +56,7 @@ class ExecutionManager {
         atom<bool> isRunning { false };
         atom<std::vector<atom<struct QTS *>>> QTS_VECTOR;
         atom<bool> errorChecking(atom<struct QTS *> q);
-        atom<void *> sendRequest(int request, atom<void *> package);
+        static atom<void *> sendRequest(int request, atom<void *> package);
         void handleRequest(atom<class ExecutionManager *> EX);
 
         class REQUEST {
@@ -97,7 +97,7 @@ class ExecutionManager {
         atom<Thread *> threadNew(atom<int (*)(void*)> f, atom<void *> arg);
         atom<Thread *> threadNew(atom<size_t> stack_size, atom<void (*)()> f);
         atom<Thread *> threadNew(atom<void (*)()> f);
-        atom<Thread *> threadNew(atom<bool> createSuspended, atom<size_t> stack_size, atom<int (*)(void*)> f, atom<void *> arg);
+        atom<Thread *> threadNew(bool createSuspended, size_t stack_size, int (*f)(void*), void * arg);
         atom<Thread *> threadNewSuspended(atom<size_t> stack_size, atom<int (*)(void*)> f, atom<void *> arg);
         atom<Thread *> threadNewSuspended(atom<int (*)(void*)> f, atom<void *> arg);
         atom<Thread *> threadNewSuspended(atom<size_t> stack_size, atom<void (*)()> f);

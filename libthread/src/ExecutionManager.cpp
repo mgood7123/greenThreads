@@ -363,12 +363,12 @@ int ExecutionManager_instance(void * arg) {
     return 0;
 }
 
-atom<class Thread *> ExecutionManager::threadNew(atom<bool> createSuspended, atom<size_t> stack_size, atom<int (*)(void*)> f, atom<void *> arg) {
+atom<class Thread *> ExecutionManager::threadNew(bool createSuspended, size_t stack_size, int (*f)(void*), void * arg) {
     atom<struct QTS *> qts { new struct QTS };
-    qts.load()->createSuspended.store(createSuspended.load());
-    qts.load()->stack_size.store(stack_size.load());
-    qts.load()->f.store(f.load());
-    qts.load()->arg.store(arg.load());
+    qts.load()->createSuspended.store(createSuspended);
+    qts.load()->stack_size.store(stack_size);
+    qts.load()->f.store(f);
+    qts.load()->arg.store(arg);
     qts.load()->push.store(true);
     if (executionManager_Current.load()->debug.load()) println("atom<class Thread *> x = static_cast<Thread*>(sendRequest(ExecutionManager::REQUEST_ID.threadCreate, qts)); starting");
     atom<class Thread *> x { sendRequest(ExecutionManager::REQUEST_ID.threadCreate, qts.load()).recast<atom<Thread *>>().load() };
@@ -775,7 +775,7 @@ int helperVoid(void * v) {
     return 0;
 }
 
-atom<class Thread *> threadNew(atom<bool> createSuspended, atom<size_t> stack_size, atom<int (*)(void*)> f, atom<void *> arg) {
+atom<class Thread *> threadNew(atom<bool> createSuspended, size_t stack_size, int (*f)(void*), void * arg) {
     if (executionManager_Current.load() != nullptr) QINIT();
     else {
         println("error: an execution manager must be set, use setExecutionManager(YourExecutionManager); to set one");
@@ -784,89 +784,89 @@ atom<class Thread *> threadNew(atom<bool> createSuspended, atom<size_t> stack_si
     return executionManager_Current.load()->threadNew(createSuspended, stack_size, f, arg);
 }
 
-atom<class Thread *> threadNew(atom<int (*)(void*)> f, atom<void *> arg) {
+atom<class Thread *> threadNew(int (*f)(void*), void * arg) {
     return threadNew(false, 0, f, arg);
 }
 
-atom<class Thread *> threadNew(atom<size_t> stack_size, atom<int (*)(void*)> f, atom<void *> arg) {
+atom<class Thread *> threadNew(size_t stack_size, int (*f)(void*), void * arg) {
     return threadNew(false, stack_size, f, arg);
 }
 
-atom<class Thread *> threadNew(atom<size_t> stack_size, atom<void (*)()> f) {
-    return threadNew(stack_size, helperVoid, reinterpret_cast<void*>(f.load()));
-}
-
-atom<class Thread *> threadNew(atom<void (*)()> f) {
-    return threadNew(0, helperVoid, reinterpret_cast<void*>(f));
-}
-
-atom<class Thread *> threadNewSuspended(atom<int (*)(void*)> f, atom<void *> arg) {
-    return threadNew(false, 0, f, arg);
-}
-
-atom<class Thread *> threadNewSuspended(atom<size_t> stack_size, atom<int (*)(void*)> f, atom<void *> arg) {
-    return threadNew(false, stack_size, f, arg);
-}
-
-atom<class Thread *> threadNewSuspended(atom<size_t> stack_size, atom<void (*)()> f) {
+atom<class Thread *> threadNew(size_t stack_size, void (*f)()) {
     return threadNew(stack_size, helperVoid, reinterpret_cast<void*>(f));
 }
 
-atom<class Thread *> threadNewSuspended(atom<void (*)()> f) {
+atom<class Thread *> threadNew(void (*f)()) {
+    return threadNew(0, helperVoid, reinterpret_cast<void*>(f));
+}
+
+atom<class Thread *> threadNewSuspended(int (*f)(void*), void * arg) {
+    return threadNew(false, 0, f, arg);
+}
+
+atom<class Thread *> threadNewSuspended(size_t stack_size, int (*f)(void*), void * arg) {
+    return threadNew(false, stack_size, f, arg);
+}
+
+atom<class Thread *> threadNewSuspended(size_t stack_size, void (*f)()) {
+    return threadNew(stack_size, helperVoid, reinterpret_cast<void*>(f));
+}
+
+atom<class Thread *> threadNewSuspended(void (*f)()) {
     return threadNew(0, helperVoid, reinterpret_cast<void*>(f));
 }
 
 void threadJoin(atom<class Thread *> t) {
-    while(!t.load()->died);
+    while(!t.load()->died.load());
 //    ExecutionManager::sendRequest(ExecutionManager::REQUEST_ID.threadJoin, t);
 }
 
 void threadJoinUntilStopped(atom<class Thread *> t) {
-    ExecutionManager::sendRequest(ExecutionManager::REQUEST_ID.threadJoinUntilStopped, t);
+    ExecutionManager::sendRequest(ExecutionManager::REQUEST_ID.threadJoinUntilStopped, t.recast<atom<void*>>());
 }
 
 void threadWaitUntilStopped(atom<class Thread *> t) {
-    ExecutionManager::sendRequest(ExecutionManager::REQUEST_ID.threadWaitUntilStopped, t);
+    ExecutionManager::sendRequest(ExecutionManager::REQUEST_ID.threadWaitUntilStopped, t.recast<atom<void*>>());
 }
 
 void threadWaitUntilRunning(atom<class Thread *> t) {
-    ExecutionManager::sendRequest(ExecutionManager::REQUEST_ID.threadWaitUntilRunning, t);
+    ExecutionManager::sendRequest(ExecutionManager::REQUEST_ID.threadWaitUntilRunning, t.recast<atom<void*>>());
 }
 
 void threadWaitUntilRunningAndJoin(atom<class Thread *> t) {
-    ExecutionManager::sendRequest(ExecutionManager::REQUEST_ID.threadWaitUntilRunningAndJoin, t);
+    ExecutionManager::sendRequest(ExecutionManager::REQUEST_ID.threadWaitUntilRunningAndJoin, t.recast<atom<void*>>());
 }
 
 void threadWaitUntilRunningAndJoinUntilStopped(atom<class Thread *> t) {
-    ExecutionManager::sendRequest(ExecutionManager::REQUEST_ID.threadWaitUntilRunningAndJoinUntilStopped, t);
+    ExecutionManager::sendRequest(ExecutionManager::REQUEST_ID.threadWaitUntilRunningAndJoinUntilStopped, t.recast<atom<void*>>());
 }
 
-atom<bool> threadIsStopped(atom<class Thread *> t) {
+bool threadIsStopped(atom<class Thread *> t) {
     return ExecutionManager::threadIsStopped(t);
 }
 
-atom<bool> threadIsRunning(atom<class Thread *> t) {
+bool threadIsRunning(atom<class Thread *> t) {
     return ExecutionManager::threadIsRunning(t);
 }
 
 void threadPause(atom<class Thread *> t) {
-    ExecutionManager::sendRequest(ExecutionManager::REQUEST_ID.threadPause, t);
+    ExecutionManager::sendRequest(ExecutionManager::REQUEST_ID.threadPause, t.recast<atom<void*>>());
 }
 
 void threadResume(atom<class Thread *> t) {
-    ExecutionManager::sendRequest(ExecutionManager::REQUEST_ID.threadResume, t);
+    ExecutionManager::sendRequest(ExecutionManager::REQUEST_ID.threadResume, t.recast<atom<void*>>());
 }
 
 void threadResumeAndJoin(atom<class Thread *> t) {
-    ExecutionManager::sendRequest(ExecutionManager::REQUEST_ID.threadResumeAndJoin, t);
+    ExecutionManager::sendRequest(ExecutionManager::REQUEST_ID.threadResumeAndJoin, t.recast<atom<void*>>());
 }
 
 void threadTerminate(atom<class Thread *> t) {
-    ExecutionManager::sendRequest(ExecutionManager::REQUEST_ID.threadTerminate, t);
+    ExecutionManager::sendRequest(ExecutionManager::REQUEST_ID.threadTerminate, t.recast<atom<void*>>());
 }
 
 void threadKill(atom<class Thread *> t) {
-    ExecutionManager::sendRequest(ExecutionManager::REQUEST_ID.threadKill, t);
+    ExecutionManager::sendRequest(ExecutionManager::REQUEST_ID.threadKill, t.recast<atom<void*>>());
 }
 
 void threadInfo(atom<class Thread *> t) {
