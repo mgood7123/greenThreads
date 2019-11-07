@@ -55,9 +55,9 @@ class ExecutionManager {
         atom<Thread *> thread { nullptr };
         atom<bool> isRunning { false };
         atom<std::vector<atom<struct QTS *>>> QTS_VECTOR;
-        bool errorChecking(atom<struct QTS *> q);
+        atom<bool> errorChecking(atom<struct QTS *> q);
         atom<void *> sendRequest(int request, atom<void *> package);
-        void handleRequest();
+        void handleRequest(atom<class ExecutionManager *> EX);
 
         class REQUEST {
             public:

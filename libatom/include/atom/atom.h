@@ -26,6 +26,11 @@ public:
     mutable std::mutex lock;
     T value;
     bool stored = false;
+
+    template<typename To>
+    To recast() {
+        return To (value);
+    }
 };
 
 template<typename T>
