@@ -1,6 +1,6 @@
 #include <stack/stack.h>
-void Stack::alloc(atom<size_t> size_) {
-    stack = new char[size_];
+void Stack::alloc(thread_safe<size_t> size_) {
+    stack = new char[size_.load()];
     direction = getStackDirection();
     if (direction == SDU) top = stack;
     else top = stack + (size*sizeof(char));
@@ -9,7 +9,7 @@ void Stack::alloc(atom<size_t> size_) {
 
 void Stack::free() {
     if (stack == nullptr) return;
-    delete[] stack;
+    delete[] stack.load();
     stack = nullptr;
     top = nullptr;
     size = 0;

@@ -111,6 +111,19 @@ depend:
 .PHONY : depend
 
 #=============================================================================
+# Target rules for targets named atom
+
+# Build rule for target.
+atom: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 atom
+.PHONY : atom
+
+# fast build rule for target.
+atom/fast:
+	$(MAKE) -f libatom/CMakeFiles/atom.dir/build.make libatom/CMakeFiles/atom.dir/build
+.PHONY : atom/fast
+
+#=============================================================================
 # Target rules for targets named stack
 
 # Build rule for target.
@@ -120,7 +133,7 @@ stack: cmake_check_build_system
 
 # fast build rule for target.
 stack/fast:
-	$(MAKE) -f stack/CMakeFiles/stack.dir/build.make stack/CMakeFiles/stack.dir/build
+	$(MAKE) -f libstack/CMakeFiles/stack.dir/build.make libstack/CMakeFiles/stack.dir/build
 .PHONY : stack/fast
 
 #=============================================================================
@@ -133,7 +146,7 @@ test_stack: cmake_check_build_system
 
 # fast build rule for target.
 test_stack/fast:
-	$(MAKE) -f stack/tests/CMakeFiles/test_stack.dir/build.make stack/tests/CMakeFiles/test_stack.dir/build
+	$(MAKE) -f libstack/tests/CMakeFiles/test_stack.dir/build.make libstack/tests/CMakeFiles/test_stack.dir/build
 .PHONY : test_stack/fast
 
 #=============================================================================
@@ -146,7 +159,7 @@ thread: cmake_check_build_system
 
 # fast build rule for target.
 thread/fast:
-	$(MAKE) -f thread/CMakeFiles/thread.dir/build.make thread/CMakeFiles/thread.dir/build
+	$(MAKE) -f libthread/CMakeFiles/thread.dir/build.make libthread/CMakeFiles/thread.dir/build
 .PHONY : thread/fast
 
 #=============================================================================
@@ -159,7 +172,7 @@ test_single_thread: cmake_check_build_system
 
 # fast build rule for target.
 test_single_thread/fast:
-	$(MAKE) -f thread/tests/CMakeFiles/test_single_thread.dir/build.make thread/tests/CMakeFiles/test_single_thread.dir/build
+	$(MAKE) -f libthread/tests/CMakeFiles/test_single_thread.dir/build.make libthread/tests/CMakeFiles/test_single_thread.dir/build
 .PHONY : test_single_thread/fast
 
 #=============================================================================
@@ -172,7 +185,7 @@ test_multi_thread: cmake_check_build_system
 
 # fast build rule for target.
 test_multi_thread/fast:
-	$(MAKE) -f thread/tests/CMakeFiles/test_multi_thread.dir/build.make thread/tests/CMakeFiles/test_multi_thread.dir/build
+	$(MAKE) -f libthread/tests/CMakeFiles/test_multi_thread.dir/build.make libthread/tests/CMakeFiles/test_multi_thread.dir/build
 .PHONY : test_multi_thread/fast
 
 # Help Target
@@ -183,6 +196,7 @@ help:
 	@echo "... depend"
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
+	@echo "... atom"
 	@echo "... stack"
 	@echo "... test_stack"
 	@echo "... thread"

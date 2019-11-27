@@ -16,7 +16,7 @@ int Stack::getStackDirection() {
     return internal().getStackDirection(&main_local);
 }
 
-char *  Stack::getStackDirectionAsString() {
+const char *  Stack::getStackDirectionAsString() {
     if (direction == SDU) return "Stack grows upwards";
     else if (direction == SDD) return "Stack grows downwards";
     else return "Stack grows in an unknown direction";

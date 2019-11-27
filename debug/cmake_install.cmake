@@ -39,8 +39,9 @@ endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
-  include("/home/brothercomplex/AndroidStudioProjects/ForegroundService/app/WinAPI/Windows/threads/debug/stack/cmake_install.cmake")
-  include("/home/brothercomplex/AndroidStudioProjects/ForegroundService/app/WinAPI/Windows/threads/debug/thread/cmake_install.cmake")
+  include("/home/brothercomplex/AndroidStudioProjects/ForegroundService/app/WinAPI/Windows/threads/debug/libatom/cmake_install.cmake")
+  include("/home/brothercomplex/AndroidStudioProjects/ForegroundService/app/WinAPI/Windows/threads/debug/libstack/cmake_install.cmake")
+  include("/home/brothercomplex/AndroidStudioProjects/ForegroundService/app/WinAPI/Windows/threads/debug/libthread/cmake_install.cmake")
 
 endif()
 

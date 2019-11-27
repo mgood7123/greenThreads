@@ -1,0 +1,34 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+../libatom/include/atom/atom.h
+mutex
+-
+cassert
+-
+type_traits
+-
+iostream
+-
+functional
+-
+
+../libstack/include/stack/internal/direction.h
+
+../libstack/include/stack/stack.h
+atom/atom.h
+-
+stack/internal/direction.h
+-
+stdlib.h
+-
+
+/home/brothercomplex/AndroidStudioProjects/ForegroundService/app/WinAPI/Windows/threads/libstack/tests/stack.cpp
+stack/stack.h
+-
+

@@ -41,9 +41,10 @@ public:
 struct QTS {
     atom<bool> createSuspended { false };
     atom<size_t> stack_size { 0 };
-    atom<int (*)(void*)> f { nullptr };
-    atom<void *> arg { nullptr };
-    atom<Thread *> t { nullptr };
+    // TODO: function pointer template specilization: https://godbolt.org/z/h3kE3D
+    atom<std::function<int(void*)>> f { nullptr };
+    atomPointer<void *> arg { nullptr };
+    atomPointer<Thread *> t { nullptr };
     atom<bool> push { false };
 };
 
@@ -52,22 +53,22 @@ class ExecutionManager {
         atom<bool> debug { false };
         atom<bool> close { false };
 
-        atom<Thread *> thread { nullptr };
+        atomPointer<Thread *> thread { nullptr };
         atom<bool> isRunning { false };
-        atom<std::vector<atom<struct QTS *>>> QTS_VECTOR;
-        atom<bool> errorChecking(atom<struct QTS *> q);
-        static atom<void *> sendRequest(int request, atom<void *> package);
-        void handleRequest(atom<class ExecutionManager *> EX);
+        atom<std::vector<atomPointer<struct QTS *>>> QTS_VECTOR;
+        atom<bool> errorChecking(atomPointer<struct QTS *> q);
+        static atomPointer<void *> sendRequest(int request, atomPointer<void *> package);
+        void handleRequest(atomPointer<ExecutionManager *> EX);
 
         class REQUEST {
             public:
                 atom<int> request { -1  };
-                atom<void *> package { nullptr };
+                atomPointer<void *> package { nullptr };
                 atom<bool> upload { false };
                 atom<bool> uploadNotComplete { false };
                 atom<bool> processing { false };
                 atom<bool> processingNotComplete { false };
-                atom<void *> reply = { nullptr };
+                atomPointer<void *> reply = { nullptr };
                 atom<Stack> stack = { Stack() };
         };
 
@@ -90,67 +91,67 @@ class ExecutionManager {
         } REQUEST_ID;
 
         atom<REQUEST> REQUEST { REQUEST() };
-        static void * sendRequest(atom<int> request, atom<void *> package);
+        static void * sendRequest(atom<int> request, atomPointer<void *> package);
 
         // threads
-        atom<Thread *> threadNew(atom<size_t> stack_size, atom<int (*)(void*)> f, atom<void *> arg);
-        atom<Thread *> threadNew(atom<int (*)(void*)> f, atom<void *> arg);
-        atom<Thread *> threadNew(atom<size_t> stack_size, atom<void (*)()> f);
-        atom<Thread *> threadNew(atom<void (*)()> f);
-        atom<Thread *> threadNew(bool createSuspended, size_t stack_size, int (*f)(void*), void * arg);
-        atom<Thread *> threadNewSuspended(atom<size_t> stack_size, atom<int (*)(void*)> f, atom<void *> arg);
-        atom<Thread *> threadNewSuspended(atom<int (*)(void*)> f, atom<void *> arg);
-        atom<Thread *> threadNewSuspended(atom<size_t> stack_size, atom<void (*)()> f);
-        atom<Thread *> threadNewSuspended(atom<void (*)()> f);
-        static void threadJoin(atom<Thread *> t);
-        static void threadJoinUntilStopped(atom<Thread *> t);
-        static void threadWaitUntilStopped(atom<Thread *> t);
-        static void threadWaitUntilRunning(atom<Thread *> t);
-        static void threadWaitUntilRunningAndJoin(atom<Thread *> t);
-        static void threadWaitUntilRunningAndJoinUntilStopped(atom<Thread *> t);
-        static bool threadIsRunning(atom<Thread *> t);
-        static bool threadIsStopped(atom<Thread *> t);
-        static void threadPause(atom<Thread *> t);
-        static void threadResume(atom<Thread *> t);
-        static void threadResumeAndJoin(atom<Thread *> t);
-        static void threadTerminate(atom<Thread *> t);
-        static void threadKill(atom<Thread *> t);
+        atomPointer<Thread *> threadNew(atom<size_t> stack_size, atom<std::function<int(void*)>> f, atomPointer<void *> arg);
+        atomPointer<Thread *> threadNew(atom<std::function<int(void*)>> f, atomPointer<void *> arg);
+        atomPointer<Thread *> threadNew(atom<size_t> stack_size, atom<std::function<void()>> f);
+        atomPointer<Thread *> threadNew(atom<std::function<void()>> f);
+        atomPointer<Thread *> threadNew(bool createSuspended, size_t stack_size, int (*f)(void*), void * arg);
+        atomPointer<Thread *> threadNewSuspended(atom<size_t> stack_size, atom<std::function<int(void*)>> f, atomPointer<void *> arg);
+        atomPointer<Thread *> threadNewSuspended(atom<std::function<int(void*)>> f, atomPointer<void *> arg);
+        atomPointer<Thread *> threadNewSuspended(atom<size_t> stack_size, atom<std::function<void()>> f);
+        atomPointer<Thread *> threadNewSuspended(atom<std::function<void()>> f);
+        static void threadJoin(atomPointer<Thread *> t);
+        static void threadJoinUntilStopped(atomPointer<Thread *> t);
+        static void threadWaitUntilStopped(atomPointer<Thread *> t);
+        static void threadWaitUntilRunning(atomPointer<Thread *> t);
+        static void threadWaitUntilRunningAndJoin(atomPointer<Thread *> t);
+        static void threadWaitUntilRunningAndJoinUntilStopped(atomPointer<Thread *> t);
+        static bool threadIsRunning(atomPointer<Thread *> t);
+        static bool threadIsStopped(atomPointer<Thread *> t);
+        static void threadPause(atomPointer<Thread *> t);
+        static void threadResume(atomPointer<Thread *> t);
+        static void threadResumeAndJoin(atomPointer<Thread *> t);
+        static void threadTerminate(atomPointer<Thread *> t);
+        static void threadKill(atomPointer<Thread *> t);
 };
 
 
 
 void executionManager_Terminate();
 
-atom<ExecutionManager *> executionManager_Current;
+atomPointer<ExecutionManager *> executionManager_Current;
 
-void executionManager_SetExecutionManager(atom<ExecutionManager *> executionManager);
-atom<ExecutionManager *> executionManager_GetExecutionManager();
+void executionManager_SetExecutionManager(atomPointer<ExecutionManager *> executionManager);
+atomPointer<ExecutionManager *> executionManager_GetExecutionManager();
 
-void setExecutionManager(atom<ExecutionManager *> executionManager);
-atom<ExecutionManager *> getExecutionManager();
+void setExecutionManager(atomPointer<ExecutionManager *> executionManager);
+atomPointer<ExecutionManager *> getExecutionManager();
 
-atom<Thread *> threadNew(atom<size_t> stack_size, atom<int (*)(void*)> f, atom<void *> arg);
-atom<Thread *> threadNew(atom<int (*)(void*)> f, atom<void *> arg);
-atom<Thread *> threadNew(atom<size_t> stack_size, atom<void (*)()> f);
-atom<Thread *> threadNew(atom<void (*)()> f);
-atom<Thread *> threadNew(atom<bool> createSuspended, atom<size_t> stack_size, atom<int (*)(void*)> f, atom<void *> arg);
-atom<Thread *> threadNewSuspended(atom<size_t> stack_size, atom<int (*)(void*)> f, atom<void *> arg);
-atom<Thread *> threadNewSuspended(atom<int (*)(void*)> f, atom<void *> arg);
-atom<Thread *> threadNewSuspended(atom<size_t> stack_size, atom<void (*)()> f);
-atom<Thread *> threadNewSuspended(atom<void (*)()> f);
-void threadJoin(atom<Thread *> t);
-void threadJoinUntilStopped(atom<Thread *> t);
-void threadWaitUntilStopped(atom<Thread *> t);
-void threadWaitUntilRunning(atom<Thread *> t);
-void threadWaitUntilRunningAndJoin(atom<Thread *> t);
-void threadWaitUntilRunningAndJoinUntilStopped(atom<Thread *> t);
-bool threadIsRunning(atom<Thread *> t);
-bool threadIsStopped(atom<Thread *> t);
-void threadPause(atom<Thread *> t);
-void threadResume(atom<Thread *> t);
-void threadResumeAndJoin(atom<Thread *> t);
-void threadInfo(atom<Thread *> t);
-void threadTerminate(atom<Thread *> t);
-void threadKill(atom<Thread *> t);
+atomPointer<Thread *> threadNew(atom<size_t> stack_size, atom<std::function<int(void*)>> f, atomPointer<void *> arg);
+atomPointer<Thread *> threadNew(atom<std::function<int(void*)>> f, atomPointer<void *> arg);
+atomPointer<Thread *> threadNew(atom<size_t> stack_size, atom<std::function<void()>> f);
+atomPointer<Thread *> threadNew(atom<std::function<void()>> f);
+atomPointer<Thread *> threadNew(atom<bool> createSuspended, atom<size_t> stack_size, atom<std::function<int(void*)>> f, atomPointer<void *> arg);
+atomPointer<Thread *> threadNewSuspended(atom<size_t> stack_size, atom<std::function<int(void*)>> f, atomPointer<void *> arg);
+atomPointer<Thread *> threadNewSuspended(atom<std::function<int(void*)>> f, atomPointer<void *> arg);
+atomPointer<Thread *> threadNewSuspended(atom<size_t> stack_size, atom<std::function<void()>> f);
+atomPointer<Thread *> threadNewSuspended(atom<std::function<void()>> f);
+void threadJoin(atomPointer<Thread *> t);
+void threadJoinUntilStopped(atomPointer<Thread *> t);
+void threadWaitUntilStopped(atomPointer<Thread *> t);
+void threadWaitUntilRunning(atomPointer<Thread *> t);
+void threadWaitUntilRunningAndJoin(atomPointer<Thread *> t);
+void threadWaitUntilRunningAndJoinUntilStopped(atomPointer<Thread *> t);
+bool threadIsRunning(atomPointer<Thread *> t);
+bool threadIsStopped(atomPointer<Thread *> t);
+void threadPause(atomPointer<Thread *> t);
+void threadResume(atomPointer<Thread *> t);
+void threadResumeAndJoin(atomPointer<Thread *> t);
+void threadInfo(atomPointer<Thread *> t);
+void threadTerminate(atomPointer<Thread *> t);
+void threadKill(atomPointer<Thread *> t);
 
 #endif //THREAD_EXECUTIONMANAGER_H

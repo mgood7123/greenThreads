@@ -65,267 +65,322 @@ CMAKE_SOURCE_DIR = /home/brothercomplex/AndroidStudioProjects/ForegroundService/
 CMAKE_BINARY_DIR = /home/brothercomplex/AndroidStudioProjects/ForegroundService/app/WinAPI/Windows/threads/debug
 
 #=============================================================================
-# Directory level rules for directory stack
+# Directory level rules for directory libatom
 
 # Convenience name for "all" pass in the directory.
-stack/all: stack/CMakeFiles/stack.dir/all
-stack/all: stack/tests/all
+libatom/all: libatom/CMakeFiles/atom.dir/all
 
-.PHONY : stack/all
+.PHONY : libatom/all
 
 # Convenience name for "clean" pass in the directory.
-stack/clean: stack/CMakeFiles/stack.dir/clean
-stack/clean: stack/tests/clean
+libatom/clean: libatom/CMakeFiles/atom.dir/clean
 
-.PHONY : stack/clean
+.PHONY : libatom/clean
 
 # Convenience name for "preinstall" pass in the directory.
-stack/preinstall: stack/tests/preinstall
+libatom/preinstall:
 
-.PHONY : stack/preinstall
+.PHONY : libatom/preinstall
 
 #=============================================================================
-# Target rules for target stack/CMakeFiles/stack.dir
+# Target rules for target libatom/CMakeFiles/atom.dir
 
 # All Build rule for target.
-stack/CMakeFiles/stack.dir/all:
-	$(MAKE) -f stack/CMakeFiles/stack.dir/build.make stack/CMakeFiles/stack.dir/depend
-	$(MAKE) -f stack/CMakeFiles/stack.dir/build.make stack/CMakeFiles/stack.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/brothercomplex/AndroidStudioProjects/ForegroundService/app/WinAPI/Windows/threads/debug/CMakeFiles --progress-num=1,2,3 "Built target stack"
-.PHONY : stack/CMakeFiles/stack.dir/all
+libatom/CMakeFiles/atom.dir/all:
+	$(MAKE) -f libatom/CMakeFiles/atom.dir/build.make libatom/CMakeFiles/atom.dir/depend
+	$(MAKE) -f libatom/CMakeFiles/atom.dir/build.make libatom/CMakeFiles/atom.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/brothercomplex/AndroidStudioProjects/ForegroundService/app/WinAPI/Windows/threads/debug/CMakeFiles --progress-num=1,2 "Built target atom"
+.PHONY : libatom/CMakeFiles/atom.dir/all
 
 # Include target in all.
-all: stack/CMakeFiles/stack.dir/all
+all: libatom/CMakeFiles/atom.dir/all
 
 .PHONY : all
 
 # Build rule for subdir invocation for target.
-stack/CMakeFiles/stack.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/brothercomplex/AndroidStudioProjects/ForegroundService/app/WinAPI/Windows/threads/debug/CMakeFiles 3
-	$(MAKE) -f CMakeFiles/Makefile2 stack/CMakeFiles/stack.dir/all
+libatom/CMakeFiles/atom.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/brothercomplex/AndroidStudioProjects/ForegroundService/app/WinAPI/Windows/threads/debug/CMakeFiles 2
+	$(MAKE) -f CMakeFiles/Makefile2 libatom/CMakeFiles/atom.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/brothercomplex/AndroidStudioProjects/ForegroundService/app/WinAPI/Windows/threads/debug/CMakeFiles 0
-.PHONY : stack/CMakeFiles/stack.dir/rule
+.PHONY : libatom/CMakeFiles/atom.dir/rule
 
 # Convenience name for target.
-stack: stack/CMakeFiles/stack.dir/rule
+atom: libatom/CMakeFiles/atom.dir/rule
+
+.PHONY : atom
+
+# clean rule for target.
+libatom/CMakeFiles/atom.dir/clean:
+	$(MAKE) -f libatom/CMakeFiles/atom.dir/build.make libatom/CMakeFiles/atom.dir/clean
+.PHONY : libatom/CMakeFiles/atom.dir/clean
+
+# clean rule for target.
+clean: libatom/CMakeFiles/atom.dir/clean
+
+.PHONY : clean
+
+#=============================================================================
+# Directory level rules for directory libstack
+
+# Convenience name for "all" pass in the directory.
+libstack/all: libstack/CMakeFiles/stack.dir/all
+libstack/all: libstack/tests/all
+
+.PHONY : libstack/all
+
+# Convenience name for "clean" pass in the directory.
+libstack/clean: libstack/CMakeFiles/stack.dir/clean
+libstack/clean: libstack/tests/clean
+
+.PHONY : libstack/clean
+
+# Convenience name for "preinstall" pass in the directory.
+libstack/preinstall: libstack/tests/preinstall
+
+.PHONY : libstack/preinstall
+
+#=============================================================================
+# Target rules for target libstack/CMakeFiles/stack.dir
+
+# All Build rule for target.
+libstack/CMakeFiles/stack.dir/all:
+	$(MAKE) -f libstack/CMakeFiles/stack.dir/build.make libstack/CMakeFiles/stack.dir/depend
+	$(MAKE) -f libstack/CMakeFiles/stack.dir/build.make libstack/CMakeFiles/stack.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/brothercomplex/AndroidStudioProjects/ForegroundService/app/WinAPI/Windows/threads/debug/CMakeFiles --progress-num=3,4,5,6 "Built target stack"
+.PHONY : libstack/CMakeFiles/stack.dir/all
+
+# Include target in all.
+all: libstack/CMakeFiles/stack.dir/all
+
+.PHONY : all
+
+# Build rule for subdir invocation for target.
+libstack/CMakeFiles/stack.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/brothercomplex/AndroidStudioProjects/ForegroundService/app/WinAPI/Windows/threads/debug/CMakeFiles 4
+	$(MAKE) -f CMakeFiles/Makefile2 libstack/CMakeFiles/stack.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/brothercomplex/AndroidStudioProjects/ForegroundService/app/WinAPI/Windows/threads/debug/CMakeFiles 0
+.PHONY : libstack/CMakeFiles/stack.dir/rule
+
+# Convenience name for target.
+stack: libstack/CMakeFiles/stack.dir/rule
 
 .PHONY : stack
 
 # clean rule for target.
-stack/CMakeFiles/stack.dir/clean:
-	$(MAKE) -f stack/CMakeFiles/stack.dir/build.make stack/CMakeFiles/stack.dir/clean
-.PHONY : stack/CMakeFiles/stack.dir/clean
+libstack/CMakeFiles/stack.dir/clean:
+	$(MAKE) -f libstack/CMakeFiles/stack.dir/build.make libstack/CMakeFiles/stack.dir/clean
+.PHONY : libstack/CMakeFiles/stack.dir/clean
 
 # clean rule for target.
-clean: stack/CMakeFiles/stack.dir/clean
+clean: libstack/CMakeFiles/stack.dir/clean
 
 .PHONY : clean
 
 #=============================================================================
-# Directory level rules for directory stack/tests
+# Directory level rules for directory libstack/tests
 
 # Convenience name for "all" pass in the directory.
-stack/tests/all: stack/tests/CMakeFiles/test_stack.dir/all
+libstack/tests/all: libstack/tests/CMakeFiles/test_stack.dir/all
 
-.PHONY : stack/tests/all
+.PHONY : libstack/tests/all
 
 # Convenience name for "clean" pass in the directory.
-stack/tests/clean: stack/tests/CMakeFiles/test_stack.dir/clean
+libstack/tests/clean: libstack/tests/CMakeFiles/test_stack.dir/clean
 
-.PHONY : stack/tests/clean
+.PHONY : libstack/tests/clean
 
 # Convenience name for "preinstall" pass in the directory.
-stack/tests/preinstall:
+libstack/tests/preinstall:
 
-.PHONY : stack/tests/preinstall
+.PHONY : libstack/tests/preinstall
 
 #=============================================================================
-# Target rules for target stack/tests/CMakeFiles/test_stack.dir
+# Target rules for target libstack/tests/CMakeFiles/test_stack.dir
 
 # All Build rule for target.
-stack/tests/CMakeFiles/test_stack.dir/all: stack/CMakeFiles/stack.dir/all
-	$(MAKE) -f stack/tests/CMakeFiles/test_stack.dir/build.make stack/tests/CMakeFiles/test_stack.dir/depend
-	$(MAKE) -f stack/tests/CMakeFiles/test_stack.dir/build.make stack/tests/CMakeFiles/test_stack.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/brothercomplex/AndroidStudioProjects/ForegroundService/app/WinAPI/Windows/threads/debug/CMakeFiles --progress-num=8,9 "Built target test_stack"
-.PHONY : stack/tests/CMakeFiles/test_stack.dir/all
+libstack/tests/CMakeFiles/test_stack.dir/all: libstack/CMakeFiles/stack.dir/all
+	$(MAKE) -f libstack/tests/CMakeFiles/test_stack.dir/build.make libstack/tests/CMakeFiles/test_stack.dir/depend
+	$(MAKE) -f libstack/tests/CMakeFiles/test_stack.dir/build.make libstack/tests/CMakeFiles/test_stack.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/brothercomplex/AndroidStudioProjects/ForegroundService/app/WinAPI/Windows/threads/debug/CMakeFiles --progress-num=11,12 "Built target test_stack"
+.PHONY : libstack/tests/CMakeFiles/test_stack.dir/all
 
 # Include target in all.
-all: stack/tests/CMakeFiles/test_stack.dir/all
+all: libstack/tests/CMakeFiles/test_stack.dir/all
 
 .PHONY : all
 
 # Build rule for subdir invocation for target.
-stack/tests/CMakeFiles/test_stack.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/brothercomplex/AndroidStudioProjects/ForegroundService/app/WinAPI/Windows/threads/debug/CMakeFiles 5
-	$(MAKE) -f CMakeFiles/Makefile2 stack/tests/CMakeFiles/test_stack.dir/all
+libstack/tests/CMakeFiles/test_stack.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/brothercomplex/AndroidStudioProjects/ForegroundService/app/WinAPI/Windows/threads/debug/CMakeFiles 6
+	$(MAKE) -f CMakeFiles/Makefile2 libstack/tests/CMakeFiles/test_stack.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/brothercomplex/AndroidStudioProjects/ForegroundService/app/WinAPI/Windows/threads/debug/CMakeFiles 0
-.PHONY : stack/tests/CMakeFiles/test_stack.dir/rule
+.PHONY : libstack/tests/CMakeFiles/test_stack.dir/rule
 
 # Convenience name for target.
-test_stack: stack/tests/CMakeFiles/test_stack.dir/rule
+test_stack: libstack/tests/CMakeFiles/test_stack.dir/rule
 
 .PHONY : test_stack
 
 # clean rule for target.
-stack/tests/CMakeFiles/test_stack.dir/clean:
-	$(MAKE) -f stack/tests/CMakeFiles/test_stack.dir/build.make stack/tests/CMakeFiles/test_stack.dir/clean
-.PHONY : stack/tests/CMakeFiles/test_stack.dir/clean
+libstack/tests/CMakeFiles/test_stack.dir/clean:
+	$(MAKE) -f libstack/tests/CMakeFiles/test_stack.dir/build.make libstack/tests/CMakeFiles/test_stack.dir/clean
+.PHONY : libstack/tests/CMakeFiles/test_stack.dir/clean
 
 # clean rule for target.
-clean: stack/tests/CMakeFiles/test_stack.dir/clean
+clean: libstack/tests/CMakeFiles/test_stack.dir/clean
 
 .PHONY : clean
 
 #=============================================================================
-# Directory level rules for directory thread
+# Directory level rules for directory libthread
 
 # Convenience name for "all" pass in the directory.
-thread/all: thread/CMakeFiles/thread.dir/all
-thread/all: thread/tests/all
+libthread/all: libthread/CMakeFiles/thread.dir/all
+libthread/all: libthread/tests/all
 
-.PHONY : thread/all
+.PHONY : libthread/all
 
 # Convenience name for "clean" pass in the directory.
-thread/clean: thread/CMakeFiles/thread.dir/clean
-thread/clean: thread/tests/clean
+libthread/clean: libthread/CMakeFiles/thread.dir/clean
+libthread/clean: libthread/tests/clean
 
-.PHONY : thread/clean
+.PHONY : libthread/clean
 
 # Convenience name for "preinstall" pass in the directory.
-thread/preinstall: thread/tests/preinstall
+libthread/preinstall: libthread/tests/preinstall
 
-.PHONY : thread/preinstall
+.PHONY : libthread/preinstall
 
 #=============================================================================
-# Target rules for target thread/CMakeFiles/thread.dir
+# Target rules for target libthread/CMakeFiles/thread.dir
 
 # All Build rule for target.
-thread/CMakeFiles/thread.dir/all: stack/CMakeFiles/stack.dir/all
-	$(MAKE) -f thread/CMakeFiles/thread.dir/build.make thread/CMakeFiles/thread.dir/depend
-	$(MAKE) -f thread/CMakeFiles/thread.dir/build.make thread/CMakeFiles/thread.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/brothercomplex/AndroidStudioProjects/ForegroundService/app/WinAPI/Windows/threads/debug/CMakeFiles --progress-num=10,11 "Built target thread"
-.PHONY : thread/CMakeFiles/thread.dir/all
+libthread/CMakeFiles/thread.dir/all: libstack/CMakeFiles/stack.dir/all
+	$(MAKE) -f libthread/CMakeFiles/thread.dir/build.make libthread/CMakeFiles/thread.dir/depend
+	$(MAKE) -f libthread/CMakeFiles/thread.dir/build.make libthread/CMakeFiles/thread.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/brothercomplex/AndroidStudioProjects/ForegroundService/app/WinAPI/Windows/threads/debug/CMakeFiles --progress-num=13,14 "Built target thread"
+.PHONY : libthread/CMakeFiles/thread.dir/all
 
 # Include target in all.
-all: thread/CMakeFiles/thread.dir/all
+all: libthread/CMakeFiles/thread.dir/all
 
 .PHONY : all
 
 # Build rule for subdir invocation for target.
-thread/CMakeFiles/thread.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/brothercomplex/AndroidStudioProjects/ForegroundService/app/WinAPI/Windows/threads/debug/CMakeFiles 5
-	$(MAKE) -f CMakeFiles/Makefile2 thread/CMakeFiles/thread.dir/all
+libthread/CMakeFiles/thread.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/brothercomplex/AndroidStudioProjects/ForegroundService/app/WinAPI/Windows/threads/debug/CMakeFiles 6
+	$(MAKE) -f CMakeFiles/Makefile2 libthread/CMakeFiles/thread.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/brothercomplex/AndroidStudioProjects/ForegroundService/app/WinAPI/Windows/threads/debug/CMakeFiles 0
-.PHONY : thread/CMakeFiles/thread.dir/rule
+.PHONY : libthread/CMakeFiles/thread.dir/rule
 
 # Convenience name for target.
-thread: thread/CMakeFiles/thread.dir/rule
+thread: libthread/CMakeFiles/thread.dir/rule
 
 .PHONY : thread
 
 # clean rule for target.
-thread/CMakeFiles/thread.dir/clean:
-	$(MAKE) -f thread/CMakeFiles/thread.dir/build.make thread/CMakeFiles/thread.dir/clean
-.PHONY : thread/CMakeFiles/thread.dir/clean
+libthread/CMakeFiles/thread.dir/clean:
+	$(MAKE) -f libthread/CMakeFiles/thread.dir/build.make libthread/CMakeFiles/thread.dir/clean
+.PHONY : libthread/CMakeFiles/thread.dir/clean
 
 # clean rule for target.
-clean: thread/CMakeFiles/thread.dir/clean
+clean: libthread/CMakeFiles/thread.dir/clean
 
 .PHONY : clean
 
 #=============================================================================
-# Directory level rules for directory thread/tests
+# Directory level rules for directory libthread/tests
 
 # Convenience name for "all" pass in the directory.
-thread/tests/all: thread/tests/CMakeFiles/test_single_thread.dir/all
-thread/tests/all: thread/tests/CMakeFiles/test_multi_thread.dir/all
+libthread/tests/all: libthread/tests/CMakeFiles/test_single_thread.dir/all
+libthread/tests/all: libthread/tests/CMakeFiles/test_multi_thread.dir/all
 
-.PHONY : thread/tests/all
+.PHONY : libthread/tests/all
 
 # Convenience name for "clean" pass in the directory.
-thread/tests/clean: thread/tests/CMakeFiles/test_single_thread.dir/clean
-thread/tests/clean: thread/tests/CMakeFiles/test_multi_thread.dir/clean
+libthread/tests/clean: libthread/tests/CMakeFiles/test_single_thread.dir/clean
+libthread/tests/clean: libthread/tests/CMakeFiles/test_multi_thread.dir/clean
 
-.PHONY : thread/tests/clean
+.PHONY : libthread/tests/clean
 
 # Convenience name for "preinstall" pass in the directory.
-thread/tests/preinstall:
+libthread/tests/preinstall:
 
-.PHONY : thread/tests/preinstall
+.PHONY : libthread/tests/preinstall
 
 #=============================================================================
-# Target rules for target thread/tests/CMakeFiles/test_single_thread.dir
+# Target rules for target libthread/tests/CMakeFiles/test_single_thread.dir
 
 # All Build rule for target.
-thread/tests/CMakeFiles/test_single_thread.dir/all: stack/CMakeFiles/stack.dir/all
-thread/tests/CMakeFiles/test_single_thread.dir/all: thread/CMakeFiles/thread.dir/all
-	$(MAKE) -f thread/tests/CMakeFiles/test_single_thread.dir/build.make thread/tests/CMakeFiles/test_single_thread.dir/depend
-	$(MAKE) -f thread/tests/CMakeFiles/test_single_thread.dir/build.make thread/tests/CMakeFiles/test_single_thread.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/brothercomplex/AndroidStudioProjects/ForegroundService/app/WinAPI/Windows/threads/debug/CMakeFiles --progress-num=6,7 "Built target test_single_thread"
-.PHONY : thread/tests/CMakeFiles/test_single_thread.dir/all
+libthread/tests/CMakeFiles/test_single_thread.dir/all: libstack/CMakeFiles/stack.dir/all
+libthread/tests/CMakeFiles/test_single_thread.dir/all: libthread/CMakeFiles/thread.dir/all
+	$(MAKE) -f libthread/tests/CMakeFiles/test_single_thread.dir/build.make libthread/tests/CMakeFiles/test_single_thread.dir/depend
+	$(MAKE) -f libthread/tests/CMakeFiles/test_single_thread.dir/build.make libthread/tests/CMakeFiles/test_single_thread.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/brothercomplex/AndroidStudioProjects/ForegroundService/app/WinAPI/Windows/threads/debug/CMakeFiles --progress-num=9,10 "Built target test_single_thread"
+.PHONY : libthread/tests/CMakeFiles/test_single_thread.dir/all
 
 # Include target in all.
-all: thread/tests/CMakeFiles/test_single_thread.dir/all
+all: libthread/tests/CMakeFiles/test_single_thread.dir/all
 
 .PHONY : all
 
 # Build rule for subdir invocation for target.
-thread/tests/CMakeFiles/test_single_thread.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/brothercomplex/AndroidStudioProjects/ForegroundService/app/WinAPI/Windows/threads/debug/CMakeFiles 7
-	$(MAKE) -f CMakeFiles/Makefile2 thread/tests/CMakeFiles/test_single_thread.dir/all
+libthread/tests/CMakeFiles/test_single_thread.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/brothercomplex/AndroidStudioProjects/ForegroundService/app/WinAPI/Windows/threads/debug/CMakeFiles 8
+	$(MAKE) -f CMakeFiles/Makefile2 libthread/tests/CMakeFiles/test_single_thread.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/brothercomplex/AndroidStudioProjects/ForegroundService/app/WinAPI/Windows/threads/debug/CMakeFiles 0
-.PHONY : thread/tests/CMakeFiles/test_single_thread.dir/rule
+.PHONY : libthread/tests/CMakeFiles/test_single_thread.dir/rule
 
 # Convenience name for target.
-test_single_thread: thread/tests/CMakeFiles/test_single_thread.dir/rule
+test_single_thread: libthread/tests/CMakeFiles/test_single_thread.dir/rule
 
 .PHONY : test_single_thread
 
 # clean rule for target.
-thread/tests/CMakeFiles/test_single_thread.dir/clean:
-	$(MAKE) -f thread/tests/CMakeFiles/test_single_thread.dir/build.make thread/tests/CMakeFiles/test_single_thread.dir/clean
-.PHONY : thread/tests/CMakeFiles/test_single_thread.dir/clean
+libthread/tests/CMakeFiles/test_single_thread.dir/clean:
+	$(MAKE) -f libthread/tests/CMakeFiles/test_single_thread.dir/build.make libthread/tests/CMakeFiles/test_single_thread.dir/clean
+.PHONY : libthread/tests/CMakeFiles/test_single_thread.dir/clean
 
 # clean rule for target.
-clean: thread/tests/CMakeFiles/test_single_thread.dir/clean
+clean: libthread/tests/CMakeFiles/test_single_thread.dir/clean
 
 .PHONY : clean
 
 #=============================================================================
-# Target rules for target thread/tests/CMakeFiles/test_multi_thread.dir
+# Target rules for target libthread/tests/CMakeFiles/test_multi_thread.dir
 
 # All Build rule for target.
-thread/tests/CMakeFiles/test_multi_thread.dir/all: stack/CMakeFiles/stack.dir/all
-thread/tests/CMakeFiles/test_multi_thread.dir/all: thread/CMakeFiles/thread.dir/all
-	$(MAKE) -f thread/tests/CMakeFiles/test_multi_thread.dir/build.make thread/tests/CMakeFiles/test_multi_thread.dir/depend
-	$(MAKE) -f thread/tests/CMakeFiles/test_multi_thread.dir/build.make thread/tests/CMakeFiles/test_multi_thread.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/brothercomplex/AndroidStudioProjects/ForegroundService/app/WinAPI/Windows/threads/debug/CMakeFiles --progress-num=4,5 "Built target test_multi_thread"
-.PHONY : thread/tests/CMakeFiles/test_multi_thread.dir/all
+libthread/tests/CMakeFiles/test_multi_thread.dir/all: libstack/CMakeFiles/stack.dir/all
+libthread/tests/CMakeFiles/test_multi_thread.dir/all: libthread/CMakeFiles/thread.dir/all
+	$(MAKE) -f libthread/tests/CMakeFiles/test_multi_thread.dir/build.make libthread/tests/CMakeFiles/test_multi_thread.dir/depend
+	$(MAKE) -f libthread/tests/CMakeFiles/test_multi_thread.dir/build.make libthread/tests/CMakeFiles/test_multi_thread.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/brothercomplex/AndroidStudioProjects/ForegroundService/app/WinAPI/Windows/threads/debug/CMakeFiles --progress-num=7,8 "Built target test_multi_thread"
+.PHONY : libthread/tests/CMakeFiles/test_multi_thread.dir/all
 
 # Include target in all.
-all: thread/tests/CMakeFiles/test_multi_thread.dir/all
+all: libthread/tests/CMakeFiles/test_multi_thread.dir/all
 
 .PHONY : all
 
 # Build rule for subdir invocation for target.
-thread/tests/CMakeFiles/test_multi_thread.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/brothercomplex/AndroidStudioProjects/ForegroundService/app/WinAPI/Windows/threads/debug/CMakeFiles 7
-	$(MAKE) -f CMakeFiles/Makefile2 thread/tests/CMakeFiles/test_multi_thread.dir/all
+libthread/tests/CMakeFiles/test_multi_thread.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/brothercomplex/AndroidStudioProjects/ForegroundService/app/WinAPI/Windows/threads/debug/CMakeFiles 8
+	$(MAKE) -f CMakeFiles/Makefile2 libthread/tests/CMakeFiles/test_multi_thread.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/brothercomplex/AndroidStudioProjects/ForegroundService/app/WinAPI/Windows/threads/debug/CMakeFiles 0
-.PHONY : thread/tests/CMakeFiles/test_multi_thread.dir/rule
+.PHONY : libthread/tests/CMakeFiles/test_multi_thread.dir/rule
 
 # Convenience name for target.
-test_multi_thread: thread/tests/CMakeFiles/test_multi_thread.dir/rule
+test_multi_thread: libthread/tests/CMakeFiles/test_multi_thread.dir/rule
 
 .PHONY : test_multi_thread
 
 # clean rule for target.
-thread/tests/CMakeFiles/test_multi_thread.dir/clean:
-	$(MAKE) -f thread/tests/CMakeFiles/test_multi_thread.dir/build.make thread/tests/CMakeFiles/test_multi_thread.dir/clean
-.PHONY : thread/tests/CMakeFiles/test_multi_thread.dir/clean
+libthread/tests/CMakeFiles/test_multi_thread.dir/clean:
+	$(MAKE) -f libthread/tests/CMakeFiles/test_multi_thread.dir/build.make libthread/tests/CMakeFiles/test_multi_thread.dir/clean
+.PHONY : libthread/tests/CMakeFiles/test_multi_thread.dir/clean
 
 # clean rule for target.
-clean: thread/tests/CMakeFiles/test_multi_thread.dir/clean
+clean: libthread/tests/CMakeFiles/test_multi_thread.dir/clean
 
 .PHONY : clean
 

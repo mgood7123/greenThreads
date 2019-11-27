@@ -1,0 +1,1 @@
+/usr/bin/c++ -fPIC -g  -shared -Wl,-soname,libstack.so -o libstack.so CMakeFiles/stack.dir/__/libatom/src/atomExceptions.cpp.o CMakeFiles/stack.dir/src/direction.cpp.o CMakeFiles/stack.dir/src/new.cpp.o 

@@ -1,0 +1,24 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+../libatom/include/atom/atom.h
+mutex
+-
+cassert
+-
+type_traits
+-
+iostream
+-
+functional
+-
+
+/home/brothercomplex/AndroidStudioProjects/ForegroundService/app/WinAPI/Windows/threads/libatom/src/atomExceptions.cpp
+atom/atom.h
+-
+

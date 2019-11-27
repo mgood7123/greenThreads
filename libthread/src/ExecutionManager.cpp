@@ -24,24 +24,24 @@
 #include <sys/types.h>
 #include <signal.h>
 #include <sched.h>
-#include <include/println.h>
-#include <libthread/include/thread/internal/ExecutionManager.h>
+#include <println.h>
+#include <thread/internal/ExecutionManager.h>
 
 int ExecutionManager_instance(void * arg);
 
-void executionManager_SetExecutionManager(atom<class ExecutionManager *> executionManager) {
+void executionManager_SetExecutionManager(atomPointer<class ExecutionManager *> executionManager) {
     executionManager_Current.store(executionManager.load());
 }
 
-void setExecutionManager(atom<class ExecutionManager *> executionManager) {
+void setExecutionManager(atomPointer<class ExecutionManager *> executionManager) {
     executionManager_SetExecutionManager(executionManager);
 }
 
-atom<class ExecutionManager *> executionManager_GetExecutionManager() {
+atomPointer<class ExecutionManager *> executionManager_GetExecutionManager() {
     return executionManager_Current;
 }
 
-atom<class ExecutionManager *> getExecutionManager() {
+atomPointer<class ExecutionManager *> getExecutionManager() {
     return executionManager_GetExecutionManager();
 }
 
@@ -53,7 +53,7 @@ void executionManager_Terminate() {
 }
 
 int suspended(void * arg) {
-    atom<struct QTS *> q { static_cast<struct QTS *>(arg) };
+    atomPointer<struct QTS *> q { static_cast<struct QTS *>(arg) };
     assert(q.load() != nullptr);
     assert(q.load()->t.load() != nullptr);
     q.load()->t.load()->died.store(false);
@@ -86,7 +86,7 @@ int suspended(void * arg) {
     return R.load();
 }
 
-atom<class Thread *> threadNew_(atom<struct QTS *> q) {
+atomPointer<Thread *> threadNew_(atomPointer<struct QTS *> q) {
     if (executionManager_Current.load()->debug.load()) println("threadNew_");
     if (executionManager_Current.load()->debug.load()) println("q.load()->t = new Thread()");
     q.load()->t.store(new Thread());
@@ -109,18 +109,18 @@ atom<class Thread *> threadNew_(atom<struct QTS *> q) {
         }
     }
     if (executionManager_Current.load()->debug.load()) println("returning 3 nullptr");
-    atom<class Thread *> NULLPOINTER { nullptr };
+    atomPointer<Thread *> NULLPOINTER { nullptr };
     return NULLPOINTER;
 }
 
-atom<class Thread *> QINIT() {
+atomPointer<Thread *> QINIT() {
     if (executionManager_Current.load()->isRunning.load()) return executionManager_Current.load()->thread;
     if (executionManager_Current.load()->debug.load()) println("initializing QINIT()");
     executionManager_Current.load()->isRunning.store(true);
     // we cannot use threadnew_() as killable will never be triggered
 
     if (executionManager_Current.load()->debug.load()) println("q.load()->t = new Thread()");
-    atom<struct QTS *> q { new struct QTS };
+    atomPointer<struct QTS *> q { new struct QTS };
     q.load()->t.store(new Thread());
     if (executionManager_Current.load()->debug.load()) println("q.load()->t = %p", q.load()->t.load());
     q.load()->t.load()->stack.load().alloc(4096);
@@ -141,11 +141,11 @@ atom<class Thread *> QINIT() {
         println("failed to initialize QINIT()");
         println("returning 3 nullptr");
     }
-    atom<class Thread *> NULLPOINTER { nullptr };
+    atomPointer<Thread *> NULLPOINTER { nullptr };
     return NULLPOINTER;
 }
 
-atom<void *> ExecutionManager::sendRequest(int request, atom<void *> package) {
+atomPointer<void *> ExecutionManager::sendRequest(int request, atomPointer<void *> package) {
     executionManager_Current.load()->REQUEST.load().request.store(request);
     executionManager_Current.load()->REQUEST.load().package.store(package.load());
     if (executionManager_Current.load()->debug.load()) println("uploading");
@@ -163,77 +163,77 @@ atom<void *> ExecutionManager::sendRequest(int request, atom<void *> package) {
     return executionManager_Current.load()->REQUEST.load().reply;
 }
 
-int staticHandleRequest(atom<class ExecutionManager *> arg) {
-    atom<class ExecutionManager *> R { arg.load() } ; //reinterpret_cast<class atom<class ExecutionManager *> >(arg);
+int staticHandleRequest(atomPointer<class ExecutionManager *> arg) {
+    atomPointer<class ExecutionManager *> R { arg.load() } ; //reinterpret_cast<class atomPointer<class ExecutionManager *> >(arg);
     if (R.load()->REQUEST.load().request.load() != -1) {
         assert(R.load()->REQUEST.load().package.load() != nullptr);
         switch (R.load()->REQUEST.load().request.load()) {
             case ExecutionManager::REQUEST_ID.threadCreate:
                 if (executionManager_Current.load()->debug.load()) println("request: threadCreate");
                 if (executionManager_Current.load()->debug.load()) println("adding new thread");
-                R.load()->REQUEST.load().reply.store(threadNew_(R.load()->REQUEST.load().package.recast<atom<struct QTS *>>()).load());
+                R.load()->REQUEST.load().reply.store(threadNew_(R.load()->REQUEST.load().package.recast<atomPointer<struct QTS *>>()).load());
                 assert(R.load()->REQUEST.load().reply.load() != nullptr);
                 R.load()->REQUEST.load().package.store(nullptr);
                 if (executionManager_Current.load()->debug.load()) println("R.load()->REQUEST.reply = %p", R.load()->REQUEST.load().reply.load());
                 if (executionManager_Current.load()->debug.load()) println("added new thread");
                 if (executionManager_Current.load()->debug.load()) println("waiting for thread stop");
-                R.load()->threadWaitUntilStopped(R.load()->REQUEST.load().reply.recast<atom<class Thread *>>());
+                R.load()->threadWaitUntilStopped(R.load()->REQUEST.load().reply.recast<atomPointer<Thread *>>());
                 if (executionManager_Current.load()->debug.load()) println("thread has stopped");
                 if (executionManager_Current.load()->debug.load()) println("request complete: threadCreate");
                 break;
             case ExecutionManager::REQUEST_ID.threadJoin:
                 if (executionManager_Current.load()->debug.load()) println("request: threadJoin");
-                R.load()->threadJoin(R.load()->REQUEST.load().package.recast<atom<class Thread *>>());
+                R.load()->threadJoin(R.load()->REQUEST.load().package.recast<atomPointer<Thread *>>());
                 if (executionManager_Current.load()->debug.load()) println("request complete: threadJoin");
                 break;
             case ExecutionManager::REQUEST_ID.threadJoinUntilStopped:
                 if (executionManager_Current.load()->debug.load()) println("request: threadJoinUntilStopped");
-                R.load()->threadJoinUntilStopped(R.load()->REQUEST.load().package.recast<atom<class Thread *>>());
+                R.load()->threadJoinUntilStopped(R.load()->REQUEST.load().package.recast<atomPointer<Thread *>>());
                 if (executionManager_Current.load()->debug.load()) println("request complete: threadJoinUntilStopped");
                 break;
             case ExecutionManager::REQUEST_ID.threadWaitUntilStopped:
                 if (executionManager_Current.load()->debug.load()) println("request: threadWaitUntilStopped");
-                R.load()->threadWaitUntilStopped(R.load()->REQUEST.load().package.recast<atom<class Thread *>>());
+                R.load()->threadWaitUntilStopped(R.load()->REQUEST.load().package.recast<atomPointer<Thread *>>());
                 if (executionManager_Current.load()->debug.load()) println("request complete: threadWaitUntilStopped");
                 break;
             case ExecutionManager::REQUEST_ID.threadWaitUntilRunning:
                 if (executionManager_Current.load()->debug.load()) println("request: threadWaitUntilRunning");
-                R.load()->threadWaitUntilRunning(R.load()->REQUEST.load().package.recast<atom<class Thread *>>());
+                R.load()->threadWaitUntilRunning(R.load()->REQUEST.load().package.recast<atomPointer<Thread *>>());
                 if (executionManager_Current.load()->debug.load()) println("request complete: threadWaitUntilRunning");
                 break;
             case ExecutionManager::REQUEST_ID.threadWaitUntilRunningAndJoin:
                 if (executionManager_Current.load()->debug.load()) println("request: threadWaitUntilRunningAndJoin");
-                R.load()->threadWaitUntilRunningAndJoin(R.load()->REQUEST.load().package.recast<atom<class Thread *>>());
+                R.load()->threadWaitUntilRunningAndJoin(R.load()->REQUEST.load().package.recast<atomPointer<Thread *>>());
                 if (executionManager_Current.load()->debug.load()) println("request complete: threadWaitUntilRunningAndJoin");
                 break;
             case ExecutionManager::REQUEST_ID.threadWaitUntilRunningAndJoinUntilStopped:
                 if (executionManager_Current.load()->debug.load()) println("request: threadWaitUntilRunningAndJoinUntilStopped");
-                R.load()->threadWaitUntilRunningAndJoinUntilStopped(R.load()->REQUEST.load().package.recast<atom<class Thread *>>());
+                R.load()->threadWaitUntilRunningAndJoinUntilStopped(R.load()->REQUEST.load().package.recast<atomPointer<Thread *>>());
                 if (executionManager_Current.load()->debug.load()) println("request complete: threadWaitUntilRunningAndJoinUntilStopped");
                 break;
             case ExecutionManager::REQUEST_ID.threadPause:
                 if (executionManager_Current.load()->debug.load()) println("request: threadPause");
-                R.load()->threadPause(R.load()->REQUEST.load().package.recast<atom<class Thread *>>());
+                R.load()->threadPause(R.load()->REQUEST.load().package.recast<atomPointer<Thread *>>());
                 if (executionManager_Current.load()->debug.load()) println("request complete: threadPause");
                 break;
             case ExecutionManager::REQUEST_ID.threadResume:
                 if (executionManager_Current.load()->debug.load()) println("request: threadResume");
-                R.load()->threadResume(R.load()->REQUEST.load().package.recast<atom<class Thread *>>());
+                R.load()->threadResume(R.load()->REQUEST.load().package.recast<atomPointer<Thread *>>());
                 if (executionManager_Current.load()->debug.load()) println("request complete: threadResume");
                 break;
             case ExecutionManager::REQUEST_ID.threadResumeAndJoin:
                 if (executionManager_Current.load()->debug.load()) println("request: threadResumeAndJoin");
-                R.load()->threadResumeAndJoin(R.load()->REQUEST.load().package.recast<atom<class Thread *>>());
+                R.load()->threadResumeAndJoin(R.load()->REQUEST.load().package.recast<atomPointer<Thread *>>());
                 if (executionManager_Current.load()->debug.load()) println("request complete: threadResumeAndJoin");
                 break;
             case ExecutionManager::REQUEST_ID.threadTerminate:
                 if (executionManager_Current.load()->debug.load()) println("request: threadTerminate");
-                R.load()->threadTerminate(R.load()->REQUEST.load().package.recast<atom<class Thread *>>());
+                R.load()->threadTerminate(R.load()->REQUEST.load().package.recast<atomPointer<Thread *>>());
                 if (executionManager_Current.load()->debug.load()) println("request complete: threadTerminate");
                 break;
             case ExecutionManager::REQUEST_ID.threadKill:
                 if (executionManager_Current.load()->debug.load()) println("request: threadKill");
-                R.load()->threadKill(R.load()->REQUEST.load().package.recast<atom<class Thread *>>());
+                R.load()->threadKill(R.load()->REQUEST.load().package.recast<atomPointer<Thread *>>());
                 if (executionManager_Current.load()->debug.load()) println("request complete: tthreadKill");
                 break;
             default:
@@ -252,7 +252,7 @@ int staticHandleRequest(atom<class ExecutionManager *> arg) {
     return 0;
 }
 
-void ExecutionManager::handleRequest(atom<class ExecutionManager *> EX) {
+void ExecutionManager::handleRequest(atomPointer<class ExecutionManager *> EX) {
     if (executionManager_Current.load()->debug.load()) println("REQUEST.processing.store(true);");
     REQUEST.load().processing.store(true);
     if (executionManager_Current.load()->debug.load()) println("REQUEST.upload.store(false);");
@@ -263,7 +263,7 @@ void ExecutionManager::handleRequest(atom<class ExecutionManager *> EX) {
     if (executionManager_Current.load()->debug.load()) println("return");
 }
 
-atom<bool> ExecutionManager::errorChecking(atom<struct QTS *> q) {
+atom<bool> ExecutionManager::errorChecking(atomPointer<struct QTS *> q) {
     atom<bool> r { false };
     if (q.load()->t == nullptr) r.store(true); // skip non existant threads
     if (q.load()->t.load()->died.load()) r.store(true); // skip died threads
@@ -272,7 +272,7 @@ atom<bool> ExecutionManager::errorChecking(atom<struct QTS *> q) {
 
 int ExecutionManager_instance(void * arg) {
     // without class, we get error: ‘ExecutionManager’ does not name a type
-    atom<class ExecutionManager *> ExecutionManager { reinterpret_cast<class ExecutionManager * >(arg) };
+    atomPointer<class ExecutionManager *> ExecutionManager { reinterpret_cast<class ExecutionManager * >(arg) };
 
     if (ExecutionManager.load()->debug.load()) println("starting Execution Manager");
 
@@ -294,7 +294,7 @@ int ExecutionManager_instance(void * arg) {
                         break;
                     }
                 }
-                atom<struct QTS *> q = ExecutionManager.load()->QTS_VECTOR.load()[i.load()];
+                atomPointer<struct QTS *> q = ExecutionManager.load()->QTS_VECTOR.load()[i.load()];
                 println("terminating thread %d", q.load()->t.load()->pid.load());
                 threadTerminate(q.load()->t);
                 continue;
@@ -311,7 +311,7 @@ int ExecutionManager_instance(void * arg) {
             if (i.load() == 0) { i++; continue; }
 
             // obtain a thread
-            atom<struct QTS *> q = ExecutionManager.load()->QTS_VECTOR.load()[i.load()];
+            atomPointer<struct QTS *> q = ExecutionManager.load()->QTS_VECTOR.load()[i.load()];
 //            threadInfo(q.load()->t);
             // error checking
 //            if (ExecutionManager.load()->debug.load()) println("error checking");
@@ -363,16 +363,16 @@ int ExecutionManager_instance(void * arg) {
     return 0;
 }
 
-atom<class Thread *> ExecutionManager::threadNew(bool createSuspended, size_t stack_size, int (*f)(void*), void * arg) {
-    atom<struct QTS *> qts { new struct QTS };
+atomPointer<Thread *> ExecutionManager::threadNew(bool createSuspended, size_t stack_size, std::function<int(void*)>, void * arg) {
+    atomPointer<struct QTS *> qts { new struct QTS };
     qts.load()->createSuspended.store(createSuspended);
     qts.load()->stack_size.store(stack_size);
     qts.load()->f.store(f);
     qts.load()->arg.store(arg);
     qts.load()->push.store(true);
-    if (executionManager_Current.load()->debug.load()) println("atom<class Thread *> x = static_cast<Thread*>(sendRequest(ExecutionManager::REQUEST_ID.threadCreate, qts)); starting");
-    atom<class Thread *> x { sendRequest(ExecutionManager::REQUEST_ID.threadCreate, qts.load()).recast<atom<Thread *>>().load() };
-    if (executionManager_Current.load()->debug.load()) println("atom<class Thread *> x = static_cast<Thread*>(sendRequest(ExecutionManager::REQUEST_ID.threadCreate, qts)); complete");
+    if (executionManager_Current.load()->debug.load()) println("atomPointer<Thread *> x = static_cast<Thread*>(sendRequest(ExecutionManager::REQUEST_ID.threadCreate, qts)); starting");
+    atomPointer<Thread *> x { sendRequest(ExecutionManager::REQUEST_ID.threadCreate, qts.load()).recast<atomPointer<Thread *>>().load() };
+    if (executionManager_Current.load()->debug.load()) println("atomPointer<Thread *> x = static_cast<Thread*>(sendRequest(ExecutionManager::REQUEST_ID.threadCreate, qts)); complete");
     if (executionManager_Current.load()->debug.load()) println("x = %p", x.load());
     assert(x.load() != nullptr);
     if (executionManager_Current.load()->debug.load()) println("createSuspended: %s", boolToString(createSuspended.load()));
@@ -384,7 +384,7 @@ atom<class Thread *> ExecutionManager::threadNew(bool createSuspended, size_t st
     return x;
 }
 
-void ExecutionManager::threadJoin(atom<class Thread *> t) {
+void ExecutionManager::threadJoin(atomPointer<Thread *> t) {
     if (executionManager_Current.load()->debug.load()) println("joining");
     if (t.load()->pid.load() != -1) {
         siginfo_t info;
@@ -423,7 +423,7 @@ void ExecutionManager::threadJoin(atom<class Thread *> t) {
     }
 }
 
-void ExecutionManager::threadJoinUntilStopped(atom<class Thread *> t) {
+void ExecutionManager::threadJoinUntilStopped(atomPointer<Thread *> t) {
     if (t.load()->pid.load() != -1) {
         siginfo_t info;
         if (waitid(P_PID, t.load()->pid.load(), &info, WEXITED|WSTOPPED) == -1) {
@@ -457,7 +457,7 @@ void ExecutionManager::threadJoinUntilStopped(atom<class Thread *> t) {
     }
 }
 
-void ExecutionManager::threadWaitUntilStopped(atom<class Thread *> t) {
+void ExecutionManager::threadWaitUntilStopped(atomPointer<Thread *> t) {
     if (t.load()->pid.load() != -1) {
         siginfo_t info;
         if (executionManager_Current.load()->debug.load()) println("waiting for pid %d", t.load()->pid.load());
@@ -488,7 +488,7 @@ void ExecutionManager::threadWaitUntilStopped(atom<class Thread *> t) {
     }
 }
 
-void ExecutionManager::threadWaitUntilRunning(atom<class Thread *> t) {
+void ExecutionManager::threadWaitUntilRunning(atomPointer<Thread *> t) {
     if (t.load()->pid.load() != -1) {
         siginfo_t info;
         if (waitid(P_PID, t.load()->pid.load(), &info, WCONTINUED) == -1) {
@@ -506,7 +506,7 @@ void ExecutionManager::threadWaitUntilRunning(atom<class Thread *> t) {
     }
 }
 
-void ExecutionManager::threadWaitUntilRunningAndJoin(atom<class Thread *> t) {
+void ExecutionManager::threadWaitUntilRunningAndJoin(atomPointer<Thread *> t) {
     if (t.load()->pid.load() != -1) {
         siginfo_t info;
         if (waitid(P_PID, t.load()->pid.load(), &info, WCONTINUED) == -1) {
@@ -556,7 +556,7 @@ void ExecutionManager::threadWaitUntilRunningAndJoin(atom<class Thread *> t) {
     }
 }
 
-void ExecutionManager::threadWaitUntilRunningAndJoinUntilStopped(atom<class Thread *> t) {
+void ExecutionManager::threadWaitUntilRunningAndJoinUntilStopped(atomPointer<Thread *> t) {
     if (t.load()->pid.load() != -1) {
         siginfo_t info;
         if (waitid(P_PID, t.load()->pid.load(), &info, WCONTINUED) == -1) {
@@ -602,15 +602,15 @@ void ExecutionManager::threadWaitUntilRunningAndJoinUntilStopped(atom<class Thre
     }
 }
 
-atom<bool> ExecutionManager::threadIsStopped(atom<class Thread *> t) {
+atom<bool> ExecutionManager::threadIsStopped(atomPointer<Thread *> t) {
     return t.load()->status.load() == t.load()->statusList.STOPPED;
 }
 
-atom<bool> ExecutionManager::threadIsRunning(atom<class Thread *> t) {
+atom<bool> ExecutionManager::threadIsRunning(atomPointer<Thread *> t) {
     return t.load()->status.load() == t.load()->statusList.RUNNING;
 }
 
-void ExecutionManager::threadPause(atom<class Thread *> t) {
+void ExecutionManager::threadPause(atomPointer<Thread *> t) {
     if (t.load()->pid.load() != -1) {
         if (kill(t.load()->pid.load(), SIGSTOP) == -1) if (executionManager_Current.load()->debug.load()) perror("kill");
         siginfo_t info;
@@ -640,7 +640,7 @@ void ExecutionManager::threadPause(atom<class Thread *> t) {
     }
 }
 
-void ExecutionManager::threadResume(atom<class Thread *> t) {
+void ExecutionManager::threadResume(atomPointer<Thread *> t) {
     if (t.load()->pid.load() != -1) {
         if (kill(t.load()->pid.load(), SIGCONT) == -1) if (executionManager_Current.load()->debug.load()) perror("kill");
         siginfo_t info;
@@ -659,7 +659,7 @@ void ExecutionManager::threadResume(atom<class Thread *> t) {
     }
 }
 
-void ExecutionManager::threadResumeAndJoin(atom<class Thread *> t) {
+void ExecutionManager::threadResumeAndJoin(atomPointer<Thread *> t) {
     if (t.load()->pid.load() != -1) {
         if (kill(t.load()->pid.load(), SIGCONT) == -1) if (executionManager_Current.load()->debug.load()) perror("kill");
         siginfo_t info;
@@ -710,7 +710,7 @@ void ExecutionManager::threadResumeAndJoin(atom<class Thread *> t) {
     }
 }
 
-void ExecutionManager::threadTerminate(atom<class Thread *> t) {
+void ExecutionManager::threadTerminate(atomPointer<Thread *> t) {
     if (t.load()->pid.load() != -1) {
         if (kill(t.load()->pid.load(), SIGTERM) == -1) if (executionManager_Current.load()->debug.load()) perror("kill");
         siginfo_t info;
@@ -740,7 +740,7 @@ void ExecutionManager::threadTerminate(atom<class Thread *> t) {
     }
 }
 
-void ExecutionManager::threadKill(atom<class Thread *> t) {
+void ExecutionManager::threadKill(atomPointer<Thread *> t) {
     if (t.load()->pid.load() != -1) {
         if (kill(t.load()->pid.load(), SIGKILL) == -1) if (executionManager_Current.load()->debug.load()) perror("kill");
         siginfo_t info;
@@ -771,11 +771,11 @@ void ExecutionManager::threadKill(atom<class Thread *> t) {
 }
 
 int helperVoid(void * v) {
-    reinterpret_cast<void (*)()>(v)();
+    reinterpret_cast<std::function<void()>>(v)();
     return 0;
 }
 
-atom<class Thread *> threadNew(atom<bool> createSuspended, size_t stack_size, int (*f)(void*), void * arg) {
+atomPointer<Thread *> threadNew(atom<bool> createSuspended, size_t stack_size, std::function<int(void*)>, void * arg) {
     if (executionManager_Current.load() != nullptr) QINIT();
     else {
         println("error: an execution manager must be set, use setExecutionManager(YourExecutionManager); to set one");
@@ -784,92 +784,92 @@ atom<class Thread *> threadNew(atom<bool> createSuspended, size_t stack_size, in
     return executionManager_Current.load()->threadNew(createSuspended, stack_size, f, arg);
 }
 
-atom<class Thread *> threadNew(int (*f)(void*), void * arg) {
+atomPointer<Thread *> threadNew(std::function<int(void*)>, void * arg) {
     return threadNew(false, 0, f, arg);
 }
 
-atom<class Thread *> threadNew(size_t stack_size, int (*f)(void*), void * arg) {
+atomPointer<Thread *> threadNew(size_t stack_size, std::function<int(void*)>, void * arg) {
     return threadNew(false, stack_size, f, arg);
 }
 
-atom<class Thread *> threadNew(size_t stack_size, void (*f)()) {
+atomPointer<Thread *> threadNew(size_t stack_size, void (*f)()) {
     return threadNew(stack_size, helperVoid, reinterpret_cast<void*>(f));
 }
 
-atom<class Thread *> threadNew(void (*f)()) {
+atomPointer<Thread *> threadNew(void (*f)()) {
     return threadNew(0, helperVoid, reinterpret_cast<void*>(f));
 }
 
-atom<class Thread *> threadNewSuspended(int (*f)(void*), void * arg) {
+atomPointer<Thread *> threadNewSuspended(std::function<int(void*)>, void * arg) {
     return threadNew(false, 0, f, arg);
 }
 
-atom<class Thread *> threadNewSuspended(size_t stack_size, int (*f)(void*), void * arg) {
+atomPointer<Thread *> threadNewSuspended(size_t stack_size, std::function<int(void*)>, void * arg) {
     return threadNew(false, stack_size, f, arg);
 }
 
-atom<class Thread *> threadNewSuspended(size_t stack_size, void (*f)()) {
+atomPointer<Thread *> threadNewSuspended(size_t stack_size, void (*f)()) {
     return threadNew(stack_size, helperVoid, reinterpret_cast<void*>(f));
 }
 
-atom<class Thread *> threadNewSuspended(void (*f)()) {
+atomPointer<Thread *> threadNewSuspended(void (*f)()) {
     return threadNew(0, helperVoid, reinterpret_cast<void*>(f));
 }
 
-void threadJoin(atom<class Thread *> t) {
+void threadJoin(atomPointer<Thread *> t) {
     while(!t.load()->died.load());
 //    ExecutionManager::sendRequest(ExecutionManager::REQUEST_ID.threadJoin, t);
 }
 
-void threadJoinUntilStopped(atom<class Thread *> t) {
+void threadJoinUntilStopped(atomPointer<Thread *> t) {
     ExecutionManager::sendRequest(ExecutionManager::REQUEST_ID.threadJoinUntilStopped, t.recast<atom<void*>>());
 }
 
-void threadWaitUntilStopped(atom<class Thread *> t) {
+void threadWaitUntilStopped(atomPointer<Thread *> t) {
     ExecutionManager::sendRequest(ExecutionManager::REQUEST_ID.threadWaitUntilStopped, t.recast<atom<void*>>());
 }
 
-void threadWaitUntilRunning(atom<class Thread *> t) {
+void threadWaitUntilRunning(atomPointer<Thread *> t) {
     ExecutionManager::sendRequest(ExecutionManager::REQUEST_ID.threadWaitUntilRunning, t.recast<atom<void*>>());
 }
 
-void threadWaitUntilRunningAndJoin(atom<class Thread *> t) {
+void threadWaitUntilRunningAndJoin(atomPointer<Thread *> t) {
     ExecutionManager::sendRequest(ExecutionManager::REQUEST_ID.threadWaitUntilRunningAndJoin, t.recast<atom<void*>>());
 }
 
-void threadWaitUntilRunningAndJoinUntilStopped(atom<class Thread *> t) {
+void threadWaitUntilRunningAndJoinUntilStopped(atomPointer<Thread *> t) {
     ExecutionManager::sendRequest(ExecutionManager::REQUEST_ID.threadWaitUntilRunningAndJoinUntilStopped, t.recast<atom<void*>>());
 }
 
-bool threadIsStopped(atom<class Thread *> t) {
+bool threadIsStopped(atomPointer<Thread *> t) {
     return ExecutionManager::threadIsStopped(t);
 }
 
-bool threadIsRunning(atom<class Thread *> t) {
+bool threadIsRunning(atomPointer<Thread *> t) {
     return ExecutionManager::threadIsRunning(t);
 }
 
-void threadPause(atom<class Thread *> t) {
+void threadPause(atomPointer<Thread *> t) {
     ExecutionManager::sendRequest(ExecutionManager::REQUEST_ID.threadPause, t.recast<atom<void*>>());
 }
 
-void threadResume(atom<class Thread *> t) {
+void threadResume(atomPointer<Thread *> t) {
     ExecutionManager::sendRequest(ExecutionManager::REQUEST_ID.threadResume, t.recast<atom<void*>>());
 }
 
-void threadResumeAndJoin(atom<class Thread *> t) {
+void threadResumeAndJoin(atomPointer<Thread *> t) {
     ExecutionManager::sendRequest(ExecutionManager::REQUEST_ID.threadResumeAndJoin, t.recast<atom<void*>>());
 }
 
-void threadTerminate(atom<class Thread *> t) {
+void threadTerminate(atomPointer<Thread *> t) {
     ExecutionManager::sendRequest(ExecutionManager::REQUEST_ID.threadTerminate, t.recast<atom<void*>>());
 }
 
-void threadKill(atom<class Thread *> t) {
+void threadKill(atomPointer<Thread *> t) {
     ExecutionManager::sendRequest(ExecutionManager::REQUEST_ID.threadKill, t.recast<atom<void*>>());
 }
 
-void threadInfo(atom<class Thread *> t) {
+void threadInfo(atomPointer<Thread *> t) {
     println("THREAD INFO:");
     atom<bool> threadExists { t != nullptr };
     println("    thread exists = %s", boolToString(threadExists.load()));

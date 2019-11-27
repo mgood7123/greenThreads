@@ -1,0 +1,1 @@
+/usr/bin/c++ -fPIC -g  -shared -Wl,-soname,libatom.so -o libatom.so CMakeFiles/atom.dir/src/atomExceptions.cpp.o 

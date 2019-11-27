@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.4.1)
-include_directories(libatom/include)
-add_subdirectory(libatom)
+include_directories(libthread_safe/include)
+add_subdirectory(libthread_safe)
 include_directories(include)
 include_directories(libstack/include)
 add_subdirectory(libstack)
