@@ -1,0 +1,19 @@
+name: C/C++ CI
+
+on: [push]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v1
+
+
+    - name: make clean
+      run: cd libthread_safe ; make clean
+    - name: make debug
+      run: cd libthread_safe ; make debug
+    - name: make test
+      run: cd libthreadsafe ; make test
